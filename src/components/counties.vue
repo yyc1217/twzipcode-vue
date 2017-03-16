@@ -1,6 +1,6 @@
 <template>
 
-<select class="twzipcode__county" v-model="selected" :id="id">
+<select class="twzipcode__county" v-model="value" :id="id">
     <option v-for="county in counties" :value="county">{{ county }}</option>
 </select>
 
@@ -16,12 +16,16 @@ export default {
         id: {
             type: String,
             default: 'twzipcode__county'
+        },
+        selected: {
+            type: String,
+            default: data.counties[0]
         }
     },
     data () {
         return {
             counties: data.counties,
-            selected: data.counties[0]
+            value: this.selected
         }
     },
     methods: {
@@ -29,7 +33,6 @@ export default {
 
             if (this.$root.bus) {
                 let id = this.$props.id
-                console.log('emity', `${id}:change:county`)
                 this.$root.bus.$emit(`${id}:change:county`, {
                     county
                 })
@@ -37,12 +40,12 @@ export default {
         }
     },
     watch: {
-        selected: function(county) {
+        value: function(county) {
             this.emitChange(county)
         }
     },
     mounted () {
-        this.emitChange(this.$data.selected)
+        this.emitChange(this.$data.value)
     }
 }
 

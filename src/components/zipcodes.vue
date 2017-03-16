@@ -1,13 +1,15 @@
 <template>
 
-<select class="twzipcode__zipcode" :id="id">
-    <option v-for="zipcode in filterByCounty" :value="'zipcode'">{{ optionText(zipcode) }}</option>
+<select class="twzipcode__zipcode" v-model="value" :id="id">
+    <option v-for="zipcode in filterByCounty" :value="zipcode.zipcode">{{ optionText(zipcode) }}</option>
 </select>
 
 </template>
 
 <script>
-import data from 'twzipcode-data'
+import twzipcode from 'twzipcode-data'
+
+let data = twzipcode('zh-tw').zipcodes
 
 export default {
     props: {
@@ -25,12 +27,17 @@ export default {
         },
         initCounty: {
             type: String
+        },
+        selected: {
+            type: String,
+            default: data[0].zipcode.toString()
         }
     },
     data () {
         return {
-            zipcodes: data('zh-tw').zipcodes,
-            county: this.initCounty
+            zipcodes: data,
+            county: this.initCounty,
+            value: this.selected
         }
     },
     methods: {
@@ -58,9 +65,7 @@ export default {
 
         if (this.$root.bus) {
             let countyId = this.$props.countyId
-            console.log('listen', `${countyId}:change:county`)
             this.$root.bus.$on(`${countyId}:change:county`, event => {
-                console.log('received', event.county)
                 this.$data.county = event.county;
             })
         }
