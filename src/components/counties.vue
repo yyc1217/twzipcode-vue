@@ -26,8 +26,10 @@ export default {
     },
     methods: {
         emitChange (county) {
+
             if (this.$root.bus) {
                 let id = this.$props.id
+                console.log('emity', `${id}:change:county`)
                 this.$root.bus.$emit(`${id}:change:county`, {
                     county
                 })

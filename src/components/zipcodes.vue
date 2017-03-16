@@ -22,12 +22,15 @@ export default {
         countyId: {
             type: String,
             default: 'twzipcode__county'
+        },
+        initCounty: {
+            type: String
         }
     },
     data () {
         return {
             zipcodes: data('zh-tw').zipcodes,
-            county: ''
+            county: this.initCounty
         }
     },
     methods: {
@@ -43,6 +46,7 @@ export default {
     },
     computed: {
         filterByCounty () {
+
             if (!this.$data.county) {
                 return this.zipcodes
             }
@@ -54,8 +58,9 @@ export default {
 
         if (this.$root.bus) {
             let countyId = this.$props.countyId
-
+            console.log('listen', `${countyId}:change:county`)
             this.$root.bus.$on(`${countyId}:change:county`, event => {
+                console.log('received', event.county)
                 this.$data.county = event.county;
             })
         }

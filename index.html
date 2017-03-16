@@ -4,24 +4,29 @@
 <head>
   <meta charset="utf-8">
   <title>vue-twzipcode</title>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
 </head>
 
-<body>
-  <div id="app">
-    <h1>郵遞區號各式選取方式</h1>
+<body class="container">
+  <div id="app" class="row">
+    <div class="offset-by-one columns">
+      <h3>郵遞區號各式選取方式</h3>
 
-    <label for="twzipcode__county--1">全部</label>
-    <twzipcode-zipcode id="twzipcode__county--1"></twzipcode-zipcode>
+      <label for="twzipcode__county--1">全部</label>
+      <twzipcode-zipcode id="twzipcode__county--1"></twzipcode-zipcode>
 
-    <label for="twzipcode__zipcode--2">全部，以縣市分組</label>
-    <twzipcode-zipcode-groupby id="twzipcode__zipcode--2"></twzipcode-zipcode-groupby>
+      <label for="twzipcode__zipcode--2">全部，以縣市分組</label>
+      <twzipcode-zipcode-groupby id="twzipcode__zipcode--2"></twzipcode-zipcode-groupby>
 
-    <label for="twzipcode__county--3">縣市</label>
-    <twzipcode-county id="twzipcode__county--3"></twzipcode-county>
+      <label for="twzipcode__county--3">縣市</label>
+      <twzipcode-county id="twzipcode__county--3"></twzipcode-county>
 
-    <label for="twzipcode__county--4">選擇縣市後，郵遞區號進行篩選</label>
-    <twzipcode-county id="twzipcode__county--4"></twzipcode-county>
-    <twzipcode-zipcode id="twzipcode__zipcode--4" county-id="twzipcode__county--4"></twzipcode-zipcode>
+      <label for="twzipcode__county--4">選擇縣市後，郵遞區號進行篩選</label>
+      <twzipcode-county id="twzipcode__county--4"></twzipcode-county>
+      <twzipcode-zipcode id="twzipcode__zipcode--4"
+                         county-id="twzipcode__county--4"
+                         init-county="臺中市"></twzipcode-zipcode>
+    </div>
   </div>
   <script src="/dist/build.js"></script>
 </body>
