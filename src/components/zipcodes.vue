@@ -1,7 +1,7 @@
 <template>
 
-<select class="twzipcode__zipcode">
-    <option v-for="zipcode in zipcodes" :value="zipcode.zipcode">{{ optionText(zipcode) }}</option>
+<select class="twzipcode__zipcode" :id="id">
+    <option v-for="zipcode in filterByCounty" :value="'zipcode'">{{ optionText(zipcode) }}</option>
 </select>
 
 </template>
@@ -15,6 +15,10 @@ export default {
             type: String,
             default: ':zipcode :county :city'
         },
+        id: {
+            type: String,
+            default: 'twzipcode__county'
+        },
         countyId: {
             type: String,
             default: 'twzipcode__county'
@@ -22,7 +26,8 @@ export default {
     },
     data () {
         return {
-            zipcodes: data('zh-tw').zipcodes
+            zipcodes: data('zh-tw').zipcodes,
+            county: ''
         }
     },
     methods: {
@@ -36,14 +41,22 @@ export default {
             return text
         }
     },
+    computed: {
+        filterByCounty () {
+            if (!this.$data.county) {
+                return this.zipcodes
+            }
+
+            return this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
+        }
+    },
     mounted () {
 
         if (this.$root.bus) {
             let countyId = this.$props.countyId
-            console.log(`listen to ${countyId}:change:county`)
 
             this.$root.bus.$on(`${countyId}:change:county`, event => {
-                console.log(event, countyId)
+                this.$data.county = event.county;
             })
         }
     }

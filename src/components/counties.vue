@@ -24,16 +24,23 @@ export default {
             selected: data.counties[0]
         }
     },
-    watch: {
-        selected: function(counties) {
+    methods: {
+        emitChange (county) {
             if (this.$root.bus) {
                 let id = this.$props.id
-                console.log(`emit ${id}:change:county`) 
                 this.$root.bus.$emit(`${id}:change:county`, {
-                    counties
+                    county
                 })
             }
         }
+    },
+    watch: {
+        selected: function(county) {
+            this.emitChange(county)
+        }
+    },
+    mounted () {
+        this.emitChange(this.$data.selected)
     }
 }
 
