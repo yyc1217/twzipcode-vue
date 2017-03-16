@@ -4,33 +4,237 @@
 <head>
   <meta charset="utf-8">
   <title>vue-twzipcode</title>
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/monokai.min.css">
+  <style>
+    .page-title {
+      text-align: center;
+      padding-top: 20px;
+    }
+    .subtitle {
+      margin-top: 1em;
+    }
+    pre code {
+      padding-left: 2em !important;
+    }
+
+    .twzipcode__county, .twzipcode__zipcode, .twzipcode__zipcode--groupby {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .twzipcode__county.demo {
+      background-color: red;
+      color: white;
+    }
+    .twzipcode__zipcode--groupby.demo {
+      background-color: yellow;
+      color: brown;
+    }
+    .twzipcode__zipcode.demo {
+      background-color: lightskyblue;
+      color: dimgrey;
+    }
+  </style>
 </head>
 
 <body class="container">
-  <div id="app" class="row">
-    <div class="offset-by-one columns">
-      <h3>郵遞區號各式選取方式</h3>
+  <div id="app">
+    <div class="row">
+      <div class="twelve columns">
+        <h3 class="page-title">臺灣郵遞區號 Vue components</h3>
+      </div>
+    </div>
 
-      <label for="twzipcode__county--1">全部</label>
-      <twzipcode-zipcode id="twzipcode__county--1"></twzipcode-zipcode>
+    <div class="row">
 
-      <label for="twzipcode__zipcode--2">全部，以縣市分組</label>
-      <twzipcode-zipcode-groupby id="twzipcode__zipcode--2"></twzipcode-zipcode-groupby>
+      <div class="three columns">
+        <h4 class="subtitle">基本設定</h4>
+      </div>
 
-      <label for="twzipcode__county--3">縣市</label>
-      <twzipcode-county id="twzipcode__county--3"></twzipcode-county>
+      <div class="nine columns">
+        <pre><code class="javascript">
+// in js
+import Vue from 'vue'
 
-      <label for="twzipcode__county--4">選擇縣市後，郵遞區號進行篩選</label>
-      <twzipcode-county id="twzipcode__county--4"
-                        selected="臺中市"></twzipcode-county>
-      <twzipcode-zipcode id="twzipcode__zipcode--4"
-                         county-id="twzipcode__county--4"
-                         init-county="臺中市"
-                         selected="423"></twzipcode-zipcode>
+new Vue({
+  el: '#app',
+  components: {
+    // ... //
+  }
+})
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="three columns">
+        <h4 class="subtitle">所有郵遞區號</h4>
+        <twzipcode-zipcode id="twzipcode__county--1" option-template=":zipcode :county-:city"></twzipcode-zipcode>
+      </div>
+
+      <div class="nine columns">
+        <pre><code class="javascript">
+// in js
+import Zipcode from './components/zipcodes.vue'
+
+...
+  components: {
+    TwzipcodeZipcode: Zipcode,
+  },
+...
+
+// in HTML
+// &lt;twzipcode-county option-template=":zipcode :county-:city"&gt;&lt;/twzipcode-county&gt;
+          </code>
+        </pre>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="three columns">
+        <h4 class="subtitle">以縣市分組</h4>
+        <twzipcode-zipcode-groupby id="twzipcode__zipcode--2"></twzipcode-zipcode-groupby>
+      </div>
+
+      <div class="nine columns">
+        <pre><code class="javascript">
+// in js
+import ZipcodeGroupby from './components/zipcodes.groupby.vue'
+
+...
+  components: {
+    TwzipcodeZipcodeGroupby: ZipcodeGroupby,
+  },
+...
+
+// in HTML
+// &lt;twzipcode-zipcode-groupby&gt;&lt;/twzipcode-zipcode-groupby&gt;
+          </code>
+        </pre>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="three columns">
+        <h4 class="subtitle">縣市</h4>
+        <twzipcode-county id="twzipcode__county--3"></twzipcode-county>
+      </div>
+
+      <div class="nine columns">
+        <pre><code class="javascript">
+// in js
+import County from './components/counties.vue'
+
+...
+  components: {
+    TwzipcodeZipcodeGroupby: ZipcodeGroupby,
+  },
+...
+
+// in HTML
+// &lt;twzipcode-county&gt;&lt;/twzipcode-county&gt;
+          </code>
+        </pre>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="three columns">
+        <h4 class="subtitle">依縣市篩選</h4>
+        <twzipcode-county id="twzipcode__county--4"
+                          selected="臺中市"></twzipcode-county>
+
+        <twzipcode-zipcode id="twzipcode__zipcode--4"
+                           county-id="twzipcode__county--4"
+                           init-county="臺中市"
+                           selected="423"></twzipcode-zipcode>
+      </div>
+
+      <div class="nine columns">
+        <pre><code class="javascript">
+// in js
+import Zipcode from './components/zipcodes.vue'
+import County from './components/counties.vue'
+
+// https://laracasts.com/discuss/channels/vue/use-a-global-event-bus
+const bus = new Vue({})
+
+...
+  components: {
+    TwzipcodeZipcode: Zipcode,
+    TwzipcodeCounty: County
+  },
+  data () {
+    return {
+      bus
+    }
+  }
+...
+
+// in HTML
+// &lt;twzipcode-county id="twzipcode__county--4" selected="臺中市"&gt;&lt;/twzipcode-county&gt;
+// &lt;twzipcode-zipcode id="twzipcode__zipcode--4" county-id="twzipcode__county--4" init-county="臺中市" selected="423"&gt;&lt;/twzipcode-zipcode&gt;
+          </code>
+        </pre>
+      </div>
+
+      <div class="row">
+        <div class="three columns">
+          <h4 class="subtitle">樣式</h4>
+          <twzipcode-county id="twzipcode__county--5" class="demo"></twzipcode-county>
+          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--5" class="demo"></twzipcode-zipcode-groupby>
+          <twzipcode-zipcode id="twzipcode__zipcode--5" class="demo"></twzipcode-zipcode>
+        </div>
+
+        <div class="nine columns">
+          <pre><code class="css">
+// in css
+.twzipcode__county {
+  background-color: red;
+  color: white;
+}
+
+.twzipcode__zipcode--groupby {
+  background-color: yellow;
+  color: brown;
+}
+  
+.twzipcode__zipcode {
+  background-color: lightskyblue;
+  color: dimgrey;
+}
+          </code>
+        </pre>
+      </div>
+
+      <div class="row">
+        <div class="three columns">
+          <h4 class="subtitle">英語</h4>
+          <twzipcode-county id="twzipcode__county--6" locale="en"></twzipcode-county>
+          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" locale="en"></twzipcode-zipcode-groupby>
+          <twzipcode-zipcode id="twzipcode__zipcode--6" locale="en" option-template=":zipcode :county / :city"></twzipcode-zipcode>
+        </div>
+
+        <div class="nine columns">
+          <pre><code class="HTML">
+// in HTML
+&lt;twzipcode-county locale="en"&gt;&lt;/twzipcode-county&gt;
+&lt;twzipcode-zipcode-groupby locale="en"&gt;&lt;/twzipcode-zipcode-groupby&gt;
+&lt;twzipcode-zipcode locale="en" option-template=":zipcode :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
+          </code>
+        </pre>
+      </div>
+
+      </div>
     </div>
   </div>
+
+  </div>
   <script src="/dist/build.js"></script>
+  <script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
 </body>
 
 </html>

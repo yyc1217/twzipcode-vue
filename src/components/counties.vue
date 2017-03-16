@@ -7,9 +7,7 @@
 </template>
 
 <script>
-import twzipcode from 'twzipcode-data'
-
-let data = twzipcode('zh-tw')
+import data from 'twzipcode-data'
 
 export default {
     props: {
@@ -19,13 +17,16 @@ export default {
         },
         selected: {
             type: String,
-            default: data.counties[0]
+        },
+        locale: {
+            type: String,
+            default: 'zh-tw'
         }
     },
     data () {
         return {
-            counties: data.counties,
-            value: this.selected
+            counties: data(this.locale).counties,
+            value: this.selected || data(this.locale).counties[0]
         }
     },
     methods: {

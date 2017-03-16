@@ -1,6 +1,6 @@
 <template>
 
-<select class="twzipcode__zipcode">
+<select class="twzipcode__zipcode--groupby" v-model="value" :id="id">
     <optgroup v-for="(zipcodes, county) in data" :label="county">
         <option v-for="zipcode in zipcodes" :value="zipcode.zipcode">{{ optionText(zipcode) }}</option>
     </optgroup>
@@ -16,11 +16,23 @@ export default {
         optionTemplate: {
             type: String,
             default: ':city'
+        },
+        selected: {
+            type: String,
+        },
+        id: {
+            type: String,
+            default: 'twzipcode__zipcode--groupby'
+        },
+        locale: {
+            type: String,
+            default: 'zh-tw'
         }
     },
     data () {
         return {
-            data: data('zh-tw').computed.groupByCounty
+            data: data(this.locale).computed.groupByCounty,
+            value: this.selected || data(this.locale).zipcodes[0].zipcode
         }
     },
     methods: {
