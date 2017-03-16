@@ -1,6 +1,6 @@
 <template>
 
-<select class="twzipcode__all">
+<select class="twzipcode__zipcode">
     <option v-for="zipcode in zipcodes" :value="zipcode.zipcode">{{ optionText(zipcode) }}</option>
 </select>
 
@@ -14,6 +14,10 @@ export default {
         optionTemplate: {
             type: String,
             default: ':zipcode :county :city'
+        },
+        countyId: {
+            type: String,
+            default: 'twzipcode__county'
         }
     },
     data () {
@@ -30,6 +34,17 @@ export default {
             text = text.replace(':zipcode', zipcode)
 
             return text
+        }
+    },
+    mounted () {
+
+        if (this.$root.bus) {
+            let countyId = this.$props.countyId
+            console.log(`listen to ${countyId}:change:county`)
+
+            this.$root.bus.$on(`${countyId}:change:county`, event => {
+                console.log(event, countyId)
+            })
         }
     }
 }

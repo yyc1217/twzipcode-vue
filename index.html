@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>vue-twzipcode</title>
-  </head>
-  <body>
-    <div id="app">
-      <h1>郵遞區號各式選取方式</h1>
+<html lang="zh-Hant">
 
-      <h2>全部</h2>
-      <twzipcode-all></twzipcode-all></div>
-    <script src="/dist/build.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>vue-twzipcode</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>郵遞區號各式選取方式</h1>
+
+    <h2>全部</h2>
+    <twzipcode-zipcode></twzipcode-zipcode>
+
+    <h2>全部，以縣市分組</h2>
+    <twzipcode-zipcode-groupby></twzipcode-zipcode-groupby>
+
+    <h2>縣市</h2>
+    <twzipcode-county></twzipcode-county>
+
+    <h2>選擇縣市後，郵遞區號進行篩選</h2>
+    <twzipcode-county id="twzipcode__county__t"></twzipcode-county>
+    <twzipcode-zipcode county-id="twzipcode__county__t"></twzipcode-zipcode>
+  </div>
+  <script src="/dist/build.js"></script>
+</body>
+
 </html>
