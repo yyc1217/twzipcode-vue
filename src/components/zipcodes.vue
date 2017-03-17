@@ -1,7 +1,7 @@
 <template>
 
 <select class="twzipcode__zipcode" v-model="value" :id="id">
-    <option v-for="zipcode in filterByCounty" :value="zipcode.zipcode">{{ optionText(zipcode) }}</option>
+    <option v-for="zipcode in filterByCounty" :value="optionValue(zipcode)">{{ optionText(zipcode) }}</option>
 </select>
 
 </template>
@@ -11,9 +11,13 @@ import twzipcode from 'twzipcode-data'
 
 export default {
     props: {
-        optionTemplate: {
+        optionTextTemplate: {
             type: String,
             default: ':zipcode :county :city'
+        },
+        optionValueTemplate: {
+            type: String,
+            default: ':zipcode'
         },
         id: {
             type: String,
@@ -38,13 +42,22 @@ export default {
         return {
             zipcodes: twzipcode(this.locale).zipcodes,
             county: this.initCounty,
-            value: this.selected || twzipcode(this.locale).zipcodes[0].zipcode.toString()
+            value: this.selected || this.optionValue(twzipcode(this.locale).zipcodes[0])
         }
     },
     methods: {
         optionText ({county, city, zipcode}) {
 
-            let text = this.optionTemplate
+            let text = this.optionTextTemplate
+            text = text.replace(':county', county)
+            text = text.replace(':city', city)
+            text = text.replace(':zipcode', zipcode)
+
+            return text
+        },
+        optionValue ({county, city, zipcode}) {
+
+            let text = this.optionValueTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
             text = text.replace(':zipcode', zipcode)
