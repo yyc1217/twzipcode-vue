@@ -1,7 +1,7 @@
 <template>
 
 <select class="twzipcode__zipcode" v-model="value" :id="id">
-    <option v-for="zipcode in filterByCounty" :value="optionValue(zipcode)">{{ optionText(zipcode) }}</option>
+    <option v-for="option in filterByCounty" :value="option.value">{{ option.text }}</option>
 </select>
 
 </template>
@@ -63,20 +63,28 @@ export default {
             text = text.replace(':zipcode', zipcode)
 
             return text
+        },
+        toOption: function(zipcode) {
+            return {
+                text: this.optionText(zipcode),
+                value: this.optionValue(zipcode)
+            }
         }
     },
     computed: {
         filterByCounty () {
 
             if (!this.$data.county) {
-                return this.zipcodes
+                return this.zipcodes.map(this.toOption)
             }
 
-            let list = this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
+            let list = this.zipcodes
+                .filter(zipcode => zipcode.county === this.$data.county)
+                .map(this.toOption)
 
-            let inList = list.filter(zipcode => this.optionValue(zipcode) === this.$data.value).length > 0
+            let inList = list.filter(option => option.value === this.$data.value).length > 0
             if (!inList) {
-                this.$data.value = this.optionValue(list[0])
+                this.$data.value = list[0].value
             }
 
             return list
