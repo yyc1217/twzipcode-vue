@@ -72,7 +72,14 @@ export default {
                 return this.zipcodes
             }
 
-            return this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
+            let list = this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
+
+            let inList = list.filter(zipcode => this.optionValue(zipcode) === this.$data.value).length > 0
+            if (!inList) {
+                this.$data.value = this.optionValue(list[0])
+            }
+
+            return list
         }
     },
     mounted () {
