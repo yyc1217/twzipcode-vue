@@ -215,13 +215,13 @@ const bus = new Vue({})
           <h4 class="subtitle">英語</h4>
           <twzipcode-county id="twzipcode__county--6" value-locale="en" text-locale="en"></twzipcode-county>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" locale="en"></twzipcode-zipcode-groupby>
-          <twzipcode-zipcode id="twzipcode__zipcode--6" locale="en" option-text-template=":id :county / :city"></twzipcode-zipcode>
+          <twzipcode-zipcode id="twzipcode__zipcode--6" text-locale="en" value-locale="en" option-text-template=":id :county / :city"></twzipcode-zipcode>
         </div>
 
         <div class="nine columns">
           <pre><code class="HTML">
 // in HTML
-&lt;twzipcode-county locale="en"&gt;&lt;/twzipcode-county&gt;
+&lt;twzipcode-county value-locale="en" text-locale="en"&gt;&lt;/twzipcode-county&gt;
 
 &lt;select id="twzipcode__county" class="twzipcode__county"&gt;
   &lt;option value="臺北市"&gt;Taipei City&lt;/option&gt;
@@ -229,7 +229,7 @@ const bus = new Vue({})
 // value預設為:id，id為縣市中文名稱；若需要英文名稱可改成:name
 
 &lt;twzipcode-zipcode-groupby locale="en"&gt;&lt;/twzipcode-zipcode-groupby&gt;
-&lt;twzipcode-zipcode locale="en" option-text-template=":id :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
+&lt;twzipcode-zipcode value-locale="en" text-locale="en" option-text-template=":id :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
           </code>
           </pre>
         </div>

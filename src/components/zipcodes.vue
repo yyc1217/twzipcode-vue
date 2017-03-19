@@ -13,11 +13,11 @@ export default {
     props: {
         optionTextTemplate: {
             type: String,
-            default: ':zipcode :county :city'
+            default: ':id :county :city'
         },
         optionValueTemplate: {
             type: String,
-            default: ':zipcode'
+            default: ':id'
         },
         id: {
             type: String,
@@ -33,54 +33,71 @@ export default {
         selected: {
             type: String,
         },
-        locale: {
+        valueLocale: {
+            type: String,
+            default: 'zh-tw'
+        },
+        textLocale: {
             type: String,
             default: 'zh-tw'
         }
     },
     data () {
+
+        let ids = twzipcode().zipcodes.map(zipcode => zipcode.id)
+        let valueDict = twzipcode(this.valueLocale).computed.keyByZipcode
+        let textDict = twzipcode(this.textLocale).computed.keyByZipcode
+        let zipcodes = this.toOptions(ids, valueDict, textDict)
+                           .map(zipcode => {
+                               zipcode.county = valueDict[zipcode.id].county
+                               return zipcode
+                            })
+
         return {
-            zipcodes: twzipcode(this.locale).zipcodes,
+            zipcodes: zipcodes,
             county: this.initCounty,
-            value: this.selected || this.optionValue(twzipcode(this.locale).zipcodes[0])
+            value: this.selected || zipcodes[0].value
         }
     },
     methods: {
-        optionText ({county, city, zipcode}) {
+        optionText ({county, city, id}) {
 
             let text = this.optionTextTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
-            text = text.replace(':zipcode', zipcode)
+            text = text.replace(':id', id)
 
             return text
         },
-        optionValue ({county, city, zipcode}) {
+        optionValue ({county, city, id}) {
 
             let text = this.optionValueTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
-            text = text.replace(':zipcode', zipcode)
+            text = text.replace(':id', id)
 
             return text
         },
-        toOption: function(zipcode) {
+        toOption: function(id, value, text) {
             return {
-                text: this.optionText(zipcode),
-                value: this.optionValue(zipcode)
+                id,
+                value: this.optionValue(value),
+                text: this.optionText(text)
             }
+        },
+        toOptions: function(ids, valueDict, textDict) {
+            return ids.map(id => this.toOption(id, valueDict[id], textDict[id]))
         }
     },
     computed: {
         filterByCounty () {
 
             if (!this.$data.county) {
-                return this.zipcodes.map(this.toOption)
+                return this.zipcodes
             }
 
             let list = this.zipcodes
                 .filter(zipcode => zipcode.county === this.$data.county)
-                .map(this.toOption)
 
             let inList = list.filter(option => option.value === this.$data.value).length > 0
             if (!inList) {
