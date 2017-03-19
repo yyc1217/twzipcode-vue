@@ -214,7 +214,7 @@ const bus = new Vue({})
         <div class="three columns">
           <h4 class="subtitle">英語</h4>
           <twzipcode-county id="twzipcode__county--6" value-locale="en" text-locale="en"></twzipcode-county>
-          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" locale="en"></twzipcode-zipcode-groupby>
+          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" value-locale="en" text-locale="en"></twzipcode-zipcode-groupby>
           <twzipcode-zipcode id="twzipcode__zipcode--6" text-locale="en" value-locale="en" text-template=":id :county / :city"></twzipcode-zipcode>
         </div>
 
@@ -228,7 +228,7 @@ const bus = new Vue({})
   &lt;option value="基隆市"&gt;Keelung City&lt;/option&gt;
 // value預設為:id，id為縣市中文名稱；若需要英文名稱可改成:name
 
-&lt;twzipcode-zipcode-groupby locale="en"&gt;&lt;/twzipcode-zipcode-groupby&gt;
+&lt;twzipcode-zipcode-groupby value-locale="en" text-locale="en"&gt;&lt;/twzipcode-zipcode-groupby&gt;
 &lt;twzipcode-zipcode value-locale="en" text-locale="en" text-template=":id :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
           </code>
           </pre>
@@ -268,17 +268,17 @@ const bus = new Vue({})
       <div class="row">
         <div class="three columns">
          <h4 class="subtitle">修改value</h4>
-          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--8" locale="en" value-template=":county---:city"></twzipcode-zipcode-groupby>
+          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--8" value-locale="en" value-template=":county---:city"></twzipcode-zipcode-groupby>
         </div>
         <div class="nine columns">
               <pre><code class="HTML">
 // in HTML
-&lt;twzipcode-zipcode-groupby locale="en" value-template=":county---:city"&gt;&lt;/twzipcode-zipcode-groupby&gt;
+&lt;twzipcode-zipcode-groupby value-locale="en" value-template=":county---:city"&gt;&lt;/twzipcode-zipcode-groupby&gt;
 
 &lt;select id="twzipcode__zipcode--groupby" class="twzipcode__zipcode--groupby"&gt;
   &lt;optgroup label="Taipei City"&gt;
-    &lt;option value="Taipei City---Zhongzheng District"&gt;Zhongzheng District&lt;/option&gt;
-    &lt;option value="Taipei City---Daton District"&gt;Daton District&lt;/option&gt;
+    &lt;option value="Taipei City---Zhongzheng District"&gt;中正區&lt;/option&gt;
+    &lt;option value="Taipei City---Daton District"&gt;大同區&lt;/option&gt;
 
     ...
               </code>

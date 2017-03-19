@@ -2,7 +2,7 @@
 
 <select class="twzipcode__zipcode--groupby" v-model="value" :id="id">
     <optgroup v-for="(zipcodes, county) in data" :label="county">
-        <option v-for="zipcode in zipcodes" :value="optionValue(zipcode)">{{ optionText(zipcode) }}</option>
+        <option v-for="zipcode in zipcodes" :value="zipcode.value">{{ zipcode.text }}</option>
     </optgroup>
 </select>
 
@@ -10,6 +10,7 @@
 
 <script>
 import twzipcode from 'twzipcode-data'
+import { groupBy } from 'lodash'
 
 export default {
     props: {
@@ -28,15 +29,30 @@ export default {
             type: String,
             default: 'twzipcode__zipcode--groupby'
         },
-        locale: {
+        valueLocale: {
+            type: String,
+            defaults: 'zh-tw'
+        },
+        textLocale: {
             type: String,
             default: 'zh-tw'
         }
     },
     data () {
+
+        let ids = twzipcode().zipcodes.map(zipcode => zipcode.id)
+        let valueDict = twzipcode(this.valueLocale).computed.keyByZipcode
+        let textDict = twzipcode(this.textLocale).computed.keyByZipcode
+        let zipcodes = this.toOptions(ids, valueDict, textDict)
+        zipcodes = zipcodes.map(zipcode => {
+                          zipcode.county = textDict[zipcode.id].county
+                          return zipcode
+                        })
+        let data = groupBy(zipcodes, 'county')
+
         return {
-            data: twzipcode(this.locale).computed.groupByCounty,
-            value: this.selected || this.optionValue(twzipcode(this.locale).zipcodes[0])
+            data,
+            value: this.selected || zipcodes[0].value
         }
     },
     methods: {
@@ -57,6 +73,16 @@ export default {
             text = text.replace(':id', id)
 
             return text
+        },
+        toOption: function(id, value, text) {
+            return {
+                id,
+                value: this.optionValue(value),
+                text: this.optionText(text)
+            }
+        },
+        toOptions: function(ids, valueDict, textDict) {
+            return ids.map(id => this.toOption(id, valueDict[id], textDict[id]))
         }
     }
 }

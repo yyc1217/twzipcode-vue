@@ -8,7 +8,7 @@
 
 <script>
 import twzipcode from 'twzipcode-data'
-import _ from 'lodash'
+import { keyBy } from 'lodash'
 
 export default {
     props: {
@@ -39,8 +39,8 @@ export default {
     data () {
 
         let ids = twzipcode().counties.map(county => county.id)
-        let valueDict = _.keyBy(twzipcode(this.valueLocale).counties, 'id')
-        let textDict = _.keyBy(twzipcode(this.textLocale).counties, 'id')
+        let valueDict = keyBy(twzipcode(this.valueLocale).counties, 'id')
+        let textDict = keyBy(twzipcode(this.textLocale).counties, 'id')
         let counties = this.toOptions(ids, valueDict, textDict)
 
         return {
