@@ -69,7 +69,7 @@ new Vue({
     <div class="row">
       <div class="three columns">
         <h4 class="subtitle">所有郵遞區號</h4>
-        <twzipcode-zipcode id="twzipcode__county--1" option-text-template=":zipcode :county-:city"></twzipcode-zipcode>
+        <twzipcode-zipcode id="twzipcode__county--1" option-text-template=":id :county-:city"></twzipcode-zipcode>
       </div>
 
       <div class="nine columns">
@@ -84,7 +84,7 @@ import Zipcode from './components/zipcodes.vue'
 ...
 
 // in HTML
-// &lt;twzipcode-county option-text-template=":zipcode :county-:city"&gt;&lt;/twzipcode-county&gt;
+// &lt;twzipcode-county option-text-template=":id :county-:city"&gt;&lt;/twzipcode-county&gt;
           </code>
         </pre>
       </div>
@@ -213,17 +213,23 @@ const bus = new Vue({})
       <div class="row">
         <div class="three columns">
           <h4 class="subtitle">英語</h4>
-          <twzipcode-county id="twzipcode__county--6" locale="en"></twzipcode-county>
+          <twzipcode-county id="twzipcode__county--6" value-locale="en" text-locale="en"></twzipcode-county>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" locale="en"></twzipcode-zipcode-groupby>
-          <twzipcode-zipcode id="twzipcode__zipcode--6" locale="en" option-text-template=":zipcode :county / :city"></twzipcode-zipcode>
+          <twzipcode-zipcode id="twzipcode__zipcode--6" locale="en" option-text-template=":id :county / :city"></twzipcode-zipcode>
         </div>
 
         <div class="nine columns">
           <pre><code class="HTML">
 // in HTML
 &lt;twzipcode-county locale="en"&gt;&lt;/twzipcode-county&gt;
+
+&lt;select id="twzipcode__county" class="twzipcode__county"&gt;
+  &lt;option value="臺北市"&gt;Taipei City&lt;/option&gt;
+  &lt;option value="基隆市"&gt;Keelung City&lt;/option&gt;
+// value預設為:id，id為縣市中文名稱；若需要英文名稱可改成:name
+
 &lt;twzipcode-zipcode-groupby locale="en"&gt;&lt;/twzipcode-zipcode-groupby&gt;
-&lt;twzipcode-zipcode locale="en" option-text-template=":zipcode :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
+&lt;twzipcode-zipcode locale="en" option-text-template=":id :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
           </code>
           </pre>
         </div>
@@ -283,12 +289,12 @@ const bus = new Vue({})
         <div class="row">
           <div class="three columns">
             <h4 class="subtitle">修改value與text</h4>
-            <twzipcode-zipcode id="twzipcode__zipcode--9" option-value-template=":county:city" option-text-template=":zipcode :county:city"></twzipcode-zipcode>
+            <twzipcode-zipcode id="twzipcode__zipcode--9" option-value-template=":county:city" option-text-template=":id :county:city"></twzipcode-zipcode>
           </div>
             <div class="nine columns">
                 <pre><code class="HTML">
 // in HTML
-&lt;twzipcode-zipcode option-value-template=":county:city" option-text-template=":zipcode :county:city"&gt;&lt;/twzipcode-zipcode&gt;
+&lt;twzipcode-zipcode option-value-template=":county:city" option-text-template=":id :county:city"&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;select id="twzipcode__zipcode" class="twzipcode__zipcode"&gt;
   &lt;option value="臺北市中正區"&gt;100 臺北市中正區&lt;/option&gt;
