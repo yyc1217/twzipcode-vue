@@ -11,11 +11,11 @@ import twzipcode from 'twzipcode-data'
 
 export default {
     props: {
-        optionTextTemplate: {
+        textTemplate: {
             type: String,
             default: ':id :county :city'
         },
-        optionValueTemplate: {
+        valueTemplate: {
             type: String,
             default: ':id'
         },
@@ -62,7 +62,7 @@ export default {
     methods: {
         optionText ({county, city, id}) {
 
-            let text = this.optionTextTemplate
+            let text = this.textTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
             text = text.replace(':id', id)
@@ -71,7 +71,7 @@ export default {
         },
         optionValue ({county, city, id}) {
 
-            let text = this.optionValueTemplate
+            let text = this.valueTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
             text = text.replace(':id', id)

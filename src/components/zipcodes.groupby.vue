@@ -13,13 +13,13 @@ import twzipcode from 'twzipcode-data'
 
 export default {
     props: {
-        optionTextTemplate: {
+        textTemplate: {
             type: String,
             default: ':city'
         },
-        optionValueTemplate: {
+        valueTemplate: {
             type: String,
-            default: ':zipcode'
+            default: ':id'
         },
         selected: {
             type: String,
@@ -40,21 +40,21 @@ export default {
         }
     },
     methods: {
-        optionText ({county, city, zipcode}) {
+        optionText ({county, city, id}) {
 
-            let text = this.optionTextTemplate
+            let text = this.textTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
-            text = text.replace(':zipcode', zipcode)
+            text = text.replace(':id', id)
 
             return text
         },
-        optionValue ({county, city, zipcode}) {
+        optionValue ({county, city, id}) {
 
-            let text = this.optionValueTemplate
+            let text = this.valueTemplate
             text = text.replace(':county', county)
             text = text.replace(':city', city)
-            text = text.replace(':zipcode', zipcode)
+            text = text.replace(':id', id)
 
             return text
         }
