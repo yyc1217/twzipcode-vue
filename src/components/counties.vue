@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import twzipcode from 'twzipcode-data'
-import { keyBy } from 'lodash'
+import mixin from './mixin'
 
 export default {
+    mixins: [mixin],
     props: {
         textTemplate: {
             type: String,
@@ -23,25 +23,14 @@ export default {
         id: {
             type: String,
             default: 'twzipcode__county'
-        },
-        selected: {
-            type: String,
-        },
-        textLocale: {
-            type: String,
-            default: 'zh-tw'
-        },
-        valueLocale: {
-            type: String,
-            default: 'zh-tw'
         }
     },
     data () {
 
-        let ids = twzipcode().counties.map(county => county.id)
-        let valueDict = keyBy(twzipcode(this.valueLocale).counties, 'id')
-        let textDict = keyBy(twzipcode(this.textLocale).counties, 'id')
-        let counties = this.toOptions(ids, valueDict, textDict)
+        let dataName = 'counties'
+        let counties = this.getData({
+            dataName
+        })
 
         return {
             counties: counties,
@@ -49,32 +38,6 @@ export default {
         }
     },
     methods: {
-        optionText ({name, id}) {
-
-            let text = this.textTemplate
-            text = text.replace(':name', name)
-            text = text.replace(':id', id)
-
-            return text
-        },
-        optionValue ({name, id}) {
-
-            let text = this.valueTemplate
-            text = text.replace(':name', name)
-            text = text.replace(':id', id)
-
-            return text
-        },
-        toOption: function (id, value, text) {
-            return {
-                id,
-                value: this.optionValue(value),
-                text: this.optionText(text)
-            }
-        },
-        toOptions: function (ids, valueDict, textDict) {
-            return ids.map(id => this.toOption(id, valueDict[id], textDict[id]))
-        },
         emitChange (county) {
 
             if (this.$root.bus) {
@@ -96,6 +59,3 @@ export default {
 }
 
 </script>
-
-<style>
-</style>
