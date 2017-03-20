@@ -12,10 +12,14 @@
       padding-top: 20px;
     }
     .subtitle {
-      margin-top: 1em;
+      margin-top: .5em;
+      text-align: right;
     }
     pre code {
       padding-left: 2em !important;
+    }
+    pre {
+      margin-bottom: 0;
     }
 
     .twzipcode__county, .twzipcode__zipcode, .twzipcode__zipcode--groupby {
@@ -26,7 +30,7 @@
       background-color: red;
       color: white;
     }
-    .twzipcode__zipcode--groupby.demo {
+    .twzipcode__zipcode.twzipcode__zipcode--groupby.demo {
       background-color: yellow;
       color: brown;
     }
@@ -53,7 +57,6 @@
 
       <div class="nine columns">
         <pre><code class="javascript">
-// in js
 import Vue from 'vue'
 
 new Vue({
@@ -74,7 +77,6 @@ new Vue({
 
       <div class="nine columns">
         <pre><code class="javascript">
-// in js
 import Zipcode from './components/zipcodes.vue'
 
 ...
@@ -82,9 +84,15 @@ import Zipcode from './components/zipcodes.vue'
     TwzipcodeZipcode: Zipcode,
   },
 ...
+          </code>
+        </pre>
 
-// in HTML
-// &lt;twzipcode-county text-template=":id :county-:city"&gt;&lt;/twzipcode-county&gt;
+        <pre><code class="HTML">
+&lt;twzipcode-county text-template=":id :county-:city"&gt;&lt;/twzipcode-county&gt;
+
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;100&quot;&gt;100 臺北市-中正區&lt;/option&gt;
+  &lt;option value=&quot;103&quot;&gt;103 臺北市-大同區&lt;/option&gt;
           </code>
         </pre>
       </div>
@@ -98,7 +106,6 @@ import Zipcode from './components/zipcodes.vue'
 
       <div class="nine columns">
         <pre><code class="javascript">
-// in js
 import ZipcodeGroupby from './components/zipcodes.groupby.vue'
 
 ...
@@ -106,9 +113,16 @@ import ZipcodeGroupby from './components/zipcodes.groupby.vue'
     TwzipcodeZipcodeGroupby: ZipcodeGroupby,
   },
 ...
+          </code>
+        </pre>
 
-// in HTML
-// &lt;twzipcode-zipcode-groupby&gt;&lt;/twzipcode-zipcode-groupby&gt;
+        <pre><code class="HTML">
+&lt;twzipcode-zipcode-groupby&gt;&lt;/twzipcode-zipcode-groupby&gt;
+
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
+  &lt;optgroup label=&quot;臺北市&quot;&gt;
+    &lt;option value=&quot;100&quot;&gt;中正區&lt;/option&gt;
+    &lt;option value=&quot;103&quot;&gt;大同區&lt;/option&gt;
           </code>
         </pre>
       </div>
@@ -122,7 +136,6 @@ import ZipcodeGroupby from './components/zipcodes.groupby.vue'
 
       <div class="nine columns">
         <pre><code class="javascript">
-// in js
 import County from './components/counties.vue'
 
 ...
@@ -130,24 +143,142 @@ import County from './components/counties.vue'
     TwzipcodeZipcodeGroupby: ZipcodeGroupby,
   },
 ...
+          </code>
+        </pre>
 
-// in HTML
-// &lt;twzipcode-county&gt;&lt;/twzipcode-county&gt;
+        <pre><code class="HTML">
+&lt;twzipcode-county&gt;&lt;/twzipcode-county&gt;
+
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__county&quot;&gt;
+  &lt;option value=&quot;臺北市&quot;&gt;臺北市&lt;/option&gt;
+  &lt;option value=&quot;基隆市&quot;&gt;基隆市&lt;/option&gt;
           </code>
         </pre>
       </div>
     </div>
 
+      <div class="row">
+        <div class="three columns">
+          <h4 class="subtitle">樣式</h4>
+          <twzipcode-county id="twzipcode__county--4" class="demo"></twzipcode-county>
+          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--4" class="demo"></twzipcode-zipcode-groupby>
+          <twzipcode-zipcode id="twzipcode__zipcode--4" class="demo"></twzipcode-zipcode>
+        </div>
+
+        <div class="nine columns">
+          <pre><code class="css">
+.twzipcode__county {
+  background-color: red;
+  color: white;
+}
+// 如果只有一個，可使用 #twzipcode__county 
+
+.twzipcode__zipcode--groupby {
+  background-color: yellow;
+  color: brown;
+}
+// 如果只有一個，可使用 #twzipcode__zipcode--groupby
+
+.twzipcode__zipcode {
+  background-color: lightskyblue;
+  color: dimgrey;
+}
+// 如果只有一個，可使用 #twzipcode__zipcode
+          </code>
+        </pre>
+      </div>
+
+        <div class="row">
+          <div class="three columns">
+            <h4 class="subtitle">修改value與text</h4>
+            <twzipcode-zipcode id="twzipcode__zipcode--5"
+                               value-template=":county:city"
+                               text-template=":id :county:city"></twzipcode-zipcode>
+          </div>
+            <div class="nine columns">
+                <pre><code class="HTML">
+&lt;twzipcode-zipcode value-template=&quot;:county:city&quot;
+                   text-template=&quot;:id :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
+
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;臺北市中正區&quot;&gt;100 臺北市中正區&lt;/option&gt;
+  &lt;option value=&quot;臺北市大同區&quot;&gt;103 臺北市大同區&lt;/option&gt;
+          </code>
+        </pre>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="three columns">
+          <h4 class="subtitle">英語</h4>
+          <twzipcode-county id="twzipcode__county--6"
+                            value-locale="en"
+                            text-locale="en"></twzipcode-county>
+          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6"
+                                     value-locale="en"
+                                     text-locale="en"></twzipcode-zipcode-groupby>
+          <twzipcode-zipcode id="twzipcode__zipcode--6"
+                             text-locale="en"
+                             value-locale="en"
+                             text-template=":id :county / :city"></twzipcode-zipcode>
+        </div>
+
+        <div class="nine columns">
+          <pre><code class="HTML">
+&lt;twzipcode-county value-locale=&quot;en&quot;
+                  text-locale=&quot;en&quot;&gt;&lt;/twzipcode-county&gt;
+
+&lt;twzipcode-zipcode-groupby value-locale=&quot;en&quot;
+                           text-locale=&quot;en&quot;&gt;&lt;/twzipcode-zipcode-groupby&gt;
+
+&lt;twzipcode-zipcode value-locale=&quot;en&quot;
+                   text-locale=&quot;en&quot;
+                   text-template=&quot;:id :county / :city&quot;&gt;&lt;/twzipcode-zipcode&gt;
+
+
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__county&quot;&gt;
+  &lt;option value=&quot;臺北市&quot;&gt;Taipei City&lt;/option&gt;
+  &lt;option value=&quot;基隆市&quot;&gt;Keelung City&lt;/option&gt;
+...
+&lt;!-- value預設為&quot;:id&quot;，縣市的id則為縣市中文名稱；若需要英文名稱可改成&quot;:name&quot; --&gt;
+
+&lt;select id=&quot;twzipcode__zipcode--groupby&quot; class=&quot;twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
+  &lt;optgroup label=&quot;Taipei City&quot;&gt;
+    &lt;option value=&quot;100&quot;&gt;Zhongzheng District&lt;/option&gt;
+    &lt;option value=&quot;103&quot;&gt;Daton District&lt;/option&gt;
+
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;100&quot;&gt;100 Taipei City / Zhongzheng District&lt;/option&gt;
+  &lt;option value=&quot;103&quot;&gt;103 Taipei City / Daton District&lt;/option&gt;
+          </code>
+          </pre>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="three columns">
+          <h4 class="subtitle">Event</h4>
+        </div>
+
+        <div class="nine columns">
+          <pre><code class="HTML">
+
+          </code>
+          </pre>
+        </div>
+      </div>
+
     <div class="row">
       <div class="three columns">
         <h4 class="subtitle">依縣市篩選</h4>
-        <twzipcode-county id="twzipcode__county--4"
+        <twzipcode-county id="twzipcode__county--8"
                           selected="臺中市"></twzipcode-county>
 
-        <twzipcode-zipcode id="twzipcode__zipcode--4"
-                           listen-to-county="twzipcode__county--4"
-                           init-county="臺中市"
+        <twzipcode-zipcode id="twzipcode__zipcode--8"
+                           listen-to-county="twzipcode__county--8"
+                           filter-by-county="臺中市"
                            selected="423"></twzipcode-zipcode>
+        <small>若有多組&lt;select&gt;，則需要指定<em>id</em>，以便在切換縣市時不會影響到其他組的郵遞區號。</small>
       </div>
 
       <div class="nine columns">
@@ -170,147 +301,39 @@ const bus = new Vue({})
     }
   }
 ...
-
-// in HTML
-// &lt;twzipcode-county id="twzipcode__county" selected="臺中市"&gt;&lt;/twzipcode-county&gt;
-// &lt;twzipcode-zipcode id="twzipcode__zipcode" listen-to-county="twzipcode__county--4" init-county="臺中市" selected="423"&gt;&lt;/twzipcode-zipcode&gt;
           </code>
         </pre>
-      </div>
 
-      <div class="row">
-        <div class="three columns">
-          <h4 class="subtitle">樣式</h4>
-          <twzipcode-county id="twzipcode__county--5" class="demo"></twzipcode-county>
-          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--5" class="demo"></twzipcode-zipcode-groupby>
-          <twzipcode-zipcode id="twzipcode__zipcode--5" class="demo"></twzipcode-zipcode>
-        </div>
+        <pre><code class="HTML">
+&lt;twzipcode-county id=&quot;twzipcode__county--8&quot;
+                  selected=&quot;臺中市&quot;&gt;&lt;/twzipcode-county&gt;
 
-        <div class="nine columns">
-          <pre><code class="css">
-// in css
-.twzipcode__county {
-  background-color: red;
-  color: white;
-}
-// 如果只有一個，可換成 #twzipcode__county 
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode--8&quot;
+                   listen-to-county=&quot;twzipcode__county--8&quot;
+                   filter-by-county=&quot;臺中市&quot;
+                   selected=&quot;423&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
-.twzipcode__zipcode--groupby {
-  background-color: yellow;
-  color: brown;
-}
-// 如果只有一個，可換成 #twzipcode__zipcode--groupby
 
-.twzipcode__zipcode {
-  background-color: lightskyblue;
-  color: dimgrey;
-}
-// 如果只有一個，可換成 #twzipcode__zipcode
+&lt;select id=&quot;twzipcode__county--8&quot; class=&quot;twzipcode__county&quot;&gt;
+  &lt;option value=&quot;臺北市&quot;&gt;臺北市&lt;/option&gt;
+  &lt;option value=&quot;基隆市&quot;&gt;基隆市&lt;/option&gt;
+
+&lt;select id=&quot;twzipcode__zipcode--8&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;400&quot;&gt;400 臺中市 中　區&lt;/option&gt;
+  &lt;option value=&quot;401&quot;&gt;401 臺中市 東　區&lt;/option&gt;
           </code>
         </pre>
-      </div>
-
-      <div class="row">
-        <div class="three columns">
-          <h4 class="subtitle">英語</h4>
-          <twzipcode-county id="twzipcode__county--6" value-locale="en" text-locale="en"></twzipcode-county>
-          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" value-locale="en" text-locale="en"></twzipcode-zipcode-groupby>
-          <twzipcode-zipcode id="twzipcode__zipcode--6" text-locale="en" value-locale="en" text-template=":id :county / :city"></twzipcode-zipcode>
-        </div>
-
-        <div class="nine columns">
-          <pre><code class="HTML">
-// in HTML
-&lt;twzipcode-county value-locale="en" text-locale="en"&gt;&lt;/twzipcode-county&gt;
-
-&lt;select id="twzipcode__county" class="twzipcode__county"&gt;
-  &lt;option value="臺北市"&gt;Taipei City&lt;/option&gt;
-  &lt;option value="基隆市"&gt;Keelung City&lt;/option&gt;
-// value預設為:id，id為縣市中文名稱；若需要英文名稱可改成:name
-
-&lt;twzipcode-zipcode-groupby value-locale="en" text-locale="en"&gt;&lt;/twzipcode-zipcode-groupby&gt;
-&lt;twzipcode-zipcode value-locale="en" text-locale="en" text-template=":id :county / :city"&gt;&lt;/twzipcode-zipcode&gt;
-          </code>
-          </pre>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="three columns">
-          <h4 class="subtitle">value</h4>
-          <twzipcode-county id="twzipcode__county--7"></twzipcode-county>
-          <twzipcode-zipcode id="twzipcode__zipcode--7"></twzipcode-zipcode>
-        </div>
-
-        <div class="nine columns">
-          <pre><code class="HTML">
-// in HTML
-&lt;twzipcode-county&gt;&lt;/twzipcode-county&gt;
-
-&lt;select id="twzipcode__county" class="twzipcode__county"&gt;
-  &lt;option value="臺北市"&gt;臺北市&lt;/option&gt;
-  &lt;option value="基隆市"&gt;基隆市&lt;/option&gt;
-
-  ...
-
-
-&lt;twzipcode-zipcode&gt;&lt;twzipcode-zipcode&gt;
-
-&lt;select id="twzipcode__zipcode" class="twzipcode__zipcode"&gt;
-  &lt;option value="100"&gt;100 臺北市 中正區&lt;/option&gt;
-  &lt;option value="103"&gt;103 臺北市 大同區&lt;/option&gt;
-
-  ...
-          </code>
-        </pre>
-      </div>
-
-      <div class="row">
-        <div class="three columns">
-         <h4 class="subtitle">修改value</h4>
-          <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--8" value-locale="en" value-template=":county---:city"></twzipcode-zipcode-groupby>
-        </div>
-        <div class="nine columns">
-              <pre><code class="HTML">
-// in HTML
-&lt;twzipcode-zipcode-groupby value-locale="en" value-template=":county---:city"&gt;&lt;/twzipcode-zipcode-groupby&gt;
-
-&lt;select id="twzipcode__zipcode--groupby" class="twzipcode__zipcode--groupby"&gt;
-  &lt;optgroup label="Taipei City"&gt;
-    &lt;option value="Taipei City---Zhongzheng District"&gt;中正區&lt;/option&gt;
-    &lt;option value="Taipei City---Daton District"&gt;大同區&lt;/option&gt;
-
-    ...
-              </code>
-            </pre>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="three columns">
-            <h4 class="subtitle">修改value與text</h4>
-            <twzipcode-zipcode id="twzipcode__zipcode--9" value-template=":county:city" text-template=":id :county:city"></twzipcode-zipcode>
-          </div>
-            <div class="nine columns">
-                <pre><code class="HTML">
-// in HTML
-&lt;twzipcode-zipcode value-template=":county:city" text-template=":id :county:city"&gt;&lt;/twzipcode-zipcode&gt;
-
-&lt;select id="twzipcode__zipcode" class="twzipcode__zipcode"&gt;
-  &lt;option value="臺北市中正區"&gt;100 臺北市中正區&lt;/option&gt;
-  &lt;option value="臺北市大同區"&gt;103 臺北市大同區&lt;/option&gt;
-
-  ...
-          </code>
-        </pre>
-      </div>
       </div>
 
       </div>
     </div>
+    <div class="row">
+      <div class="twelve columns">
+        資料來源：<a href="https://github.com/yyc1217/twzipcode-data">twzipcode-data</a>
+      </div>
+    </div>
   </div>
 
-  </div>
   <script src="/dist/build.js"></script>
   <script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
   <script>

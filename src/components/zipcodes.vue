@@ -1,7 +1,7 @@
 <template>
 
 <select class="twzipcode__zipcode" v-model="value" :id="id">
-    <option v-for="option in filterByCounty" :value="option.value">{{ option.text }}</option>
+    <option v-for="option in filterByCountyOptions" :value="option.value">{{ option.text }}</option>
 </select>
 
 </template>
@@ -28,7 +28,7 @@ export default {
             type: String,
             default: 'twzipcode__county'
         },
-        initCounty: {
+        filterByCounty: {
             type: String
         }
     },
@@ -46,12 +46,12 @@ export default {
 
         return {
             zipcodes: zipcodes,
-            county: this.initCounty,
+            county: this.filterByCounty,
             value: this.selected || zipcodes[0].value,
         }
     },
     computed: {
-        filterByCounty () {
+        filterByCountyOptions () {
 
             if (!this.$data.county) {
                 return this.zipcodes
