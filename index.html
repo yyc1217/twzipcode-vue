@@ -21,6 +21,16 @@
     pre {
       margin-bottom: 0;
     }
+    a.bookmark {
+      text-decoration: none;
+      color: #d3d3d3;
+    }
+    .subtitle .bookmark {
+      visibility: hidden;
+    }
+    .subtitle:hover .bookmark {
+      visibility: visible;
+    }
 
     .twzipcode__county, .twzipcode__zipcode, .twzipcode__zipcode--groupby {
       width: 100%;
@@ -52,7 +62,7 @@
     <div class="row">
 
       <div class="three columns">
-        <h4 class="subtitle">基本設定</h4>
+        <h4 class="subtitle" id="基本設定"><a href="#基本設定" class="bookmark">#</a> 基本設定</h4>
       </div>
 
       <div class="nine columns">
@@ -71,7 +81,7 @@ new Vue({
 
     <div class="row">
       <div class="three columns">
-        <h4 class="subtitle">所有郵遞區號</h4>
+        <h4 class="subtitle" id="所有郵遞區號"><a href="#所有郵遞區號" class="bookmark">#</a> 所有郵遞區號</h4>
         <twzipcode-zipcode id="twzipcode__county--1" text-template=":id :county-:city"></twzipcode-zipcode>
       </div>
 
@@ -100,7 +110,7 @@ import Zipcode from './components/zipcodes.vue'
 
     <div class="row">
       <div class="three columns">
-        <h4 class="subtitle">以縣市分組</h4>
+        <h4 class="subtitle" id="以縣市分組"><a href="#以縣市分組" class="bookmark">#</a> 以縣市分組</h4>
         <twzipcode-zipcode-groupby id="twzipcode__zipcode--2"></twzipcode-zipcode-groupby>
       </div>
 
@@ -130,7 +140,7 @@ import ZipcodeGroupby from './components/zipcodes.groupby.vue'
 
     <div class="row">
       <div class="three columns">
-        <h4 class="subtitle">縣市</h4>
+        <h4 class="subtitle" id="縣市"><a href="#縣市" class="bookmark">#</a> 縣市</h4>
         <twzipcode-county id="twzipcode__county--3"></twzipcode-county>
       </div>
 
@@ -159,7 +169,7 @@ import County from './components/counties.vue'
 
       <div class="row">
         <div class="three columns">
-          <h4 class="subtitle">樣式</h4>
+          <h4 class="subtitle" id="樣式"><a href="#樣式" class="bookmark">#</a> 樣式</h4>
           <twzipcode-county id="twzipcode__county--4" class="demo"></twzipcode-county>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--4" class="demo"></twzipcode-zipcode-groupby>
           <twzipcode-zipcode id="twzipcode__zipcode--4" class="demo"></twzipcode-zipcode>
@@ -190,7 +200,7 @@ import County from './components/counties.vue'
 
         <div class="row">
           <div class="three columns">
-            <h4 class="subtitle">修改value與text</h4>
+            <h5 class="subtitle" id="value與text格式"><a href="#value與text格式" class="bookmark">#</a> value與text格式</h5>
             <twzipcode-zipcode id="twzipcode__zipcode--5"
                                value-template=":county:city"
                                text-template=":id :county:city"></twzipcode-zipcode>
@@ -210,10 +220,11 @@ import County from './components/counties.vue'
 
       <div class="row">
         <div class="three columns">
-          <h4 class="subtitle">英語</h4>
+          <h4 class="subtitle" id="英語"><a href="#英語" class="bookmark">#</a> 英語</h4>
           <twzipcode-county id="twzipcode__county--6"
                             value-locale="en"
                             text-locale="en"></twzipcode-county>
+          <p><small>縣市的 value 預設為<code>:id</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code></small></p>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6"
                                      value-locale="en"
                                      text-locale="en"></twzipcode-zipcode-groupby>
@@ -239,8 +250,6 @@ import County from './components/counties.vue'
 &lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__county&quot;&gt;
   &lt;option value=&quot;臺北市&quot;&gt;Taipei City&lt;/option&gt;
   &lt;option value=&quot;基隆市&quot;&gt;Keelung City&lt;/option&gt;
-...
-&lt;!-- value預設為&quot;:id&quot;，縣市的id則為縣市中文名稱；若需要英文名稱可改成&quot;:name&quot; --&gt;
 
 &lt;select id=&quot;twzipcode__zipcode--groupby&quot; class=&quot;twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
   &lt;optgroup label=&quot;Taipei City&quot;&gt;
@@ -257,12 +266,35 @@ import County from './components/counties.vue'
 
       <div class="row">
         <div class="three columns">
-          <h4 class="subtitle">Event</h4>
+          <h4 class="subtitle" id="事件"><a href="#事件" class="bookmark">#</a>事件</h4>
+          <twzipcode-zipcode id="twzipcode__zipcode--7"></twzipcode-zipcode>
+          <p>demoCallback：<code id="demoCallback"></code></p>
+          <p><small>若有在 parent 的 data 給予 bus 參數作為事件的 emitter ，則 components 下的每個 component 會分別 emit<code>${id}:change</code>事件，並送出一個更新後的值<code>value</code>；可使用<code>$on</code>來接收。</small><p>
         </div>
 
         <div class="nine columns">
-          <pre><code class="HTML">
+          <pre><code class="javascript">
+import Vue from 'vue'
+import Zipcode from './components/zipcodes.vue'
 
+// https://laracasts.com/discuss/channels/vue/use-a-global-event-bus
+const bus = new Vue({})
+
+bus.$on('twzipcode__zipcode:change', function(event) {
+  document.getElementById('demoCallback').textContent = event.value
+})
+
+new Vue({
+  el: '#app',
+  components: {
+    TwzipcodeCounty: County
+  },
+  data () {
+    return {
+      bus
+    }
+  }
+})
           </code>
           </pre>
         </div>
@@ -270,7 +302,7 @@ import County from './components/counties.vue'
 
     <div class="row">
       <div class="three columns">
-        <h4 class="subtitle">依縣市篩選</h4>
+        <h4 class="subtitle" id="依縣市篩選"><a href="#依縣市篩選" class="bookmark">#</a> 依縣市篩選</h4>
         <twzipcode-county id="twzipcode__county--8"
                           selected="臺中市"></twzipcode-county>
 
@@ -278,7 +310,7 @@ import County from './components/counties.vue'
                            listen-to-county="twzipcode__county--8"
                            filter-by-county="臺中市"
                            selected="423"></twzipcode-zipcode>
-        <small>若有多組&lt;select&gt;，則需要指定<em>id</em>，以便在切換縣市時不會影響到其他組的郵遞區號。</small>
+        <small>若只有一組縣市與郵遞區號，則無需任何更動；若有多組，則需要指定<code>id</code>，以便在切換縣市時不會影響到其他組的郵遞區號。</small>
       </div>
 
       <div class="nine columns">
