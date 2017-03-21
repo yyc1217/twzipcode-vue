@@ -15,6 +15,9 @@
       margin-top: .5em;
       text-align: right;
     }
+    .subtitle--left {
+      text-align: left;
+    }
     pre code {
       padding-left: 2em !important;
     }
@@ -23,13 +26,16 @@
     }
     a.bookmark {
       text-decoration: none;
-      color: #d3d3d3;
+      color: black;
     }
     .subtitle .bookmark {
       visibility: hidden;
     }
     .subtitle:hover .bookmark {
       visibility: visible;
+    }
+    table td, table th {
+      text-align: center;
     }
 
     .twzipcode__county, .twzipcode__zipcode, .twzipcode__zipcode--groupby {
@@ -224,7 +230,7 @@ import County from './components/counties.vue'
           <twzipcode-county id="twzipcode__county--6"
                             value-locale="en"
                             text-locale="en"></twzipcode-county>
-          <p><small>縣市的 value 預設為<code>:id</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code></small></p>
+          <p><small>縣市的 value 預設為<code>:id</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code>。</small></p>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6"
                                      value-locale="en"
                                      text-locale="en"></twzipcode-zipcode-groupby>
@@ -232,6 +238,7 @@ import County from './components/counties.vue'
                              text-locale="en"
                              value-locale="en"
                              text-template=":id :county / :city"></twzipcode-zipcode>
+          <p><small>value 和 text 可同時使用不同的 locale 。</small></p>
         </div>
 
         <div class="nine columns">
@@ -359,6 +366,89 @@ const bus = new Vue({})
 
       </div>
     </div>
+
+    <div class="row">
+      <div class="twelve columns">
+        <h4 class="subtitle subtitle--left" id="props"><a href="#props" class="bookmark">#</a> props與預設值</h4>
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th></th>
+              <th>counties.vue</th>
+              <th>zipcodes.vue</th>
+              <th>zipcodes.groupby.vue</th>
+              <th>說明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>value-locale</th>
+              <td><code>zh-tw</code></td>
+              <td><code>zh-tw</code></td>
+              <td><code>zh-tw</code></td>
+              <td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locale.js</a></td>
+            </tr>
+            <tr>
+              <th>value-template</th>
+              <td><code>:id</code></td>
+              <td><code>:id</code></td>
+              <td><code>:id</code></td>
+              <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a>
+            </tr>
+            <tr>
+              <th>text-locale</th>
+              <td><code>zh-tw</code></td>
+              <td><code>zh-tw</code></td>
+              <td><code>zh-tw</code></td>
+              <td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locale.js</a></td>
+            </tr>
+            <tr>
+              <th>text-template</th>
+              <td><code>:id</code></td>
+              <td><code>:id :county :city</code></td>
+              <td><code>:city</code></td>
+              <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a>
+            </tr>
+            <tr>
+              <th>id</th>
+              <td><code>twzipcode__county</code></td>
+              <td><code>twzipcode__zipcode</code></td>
+              <td><code>twzipcode__zipcode--groupby</code></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>class</th>
+              <td><code>twzipcode__county</code></td>
+              <td><code>twzipcode__zipcode</code></td>
+              <td><code>twzipcode__zipcode twzipcode__zipcode--groupby</code></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>selected</th>
+              <td>第一筆資料</td>
+              <td>第一筆資料</td>
+              <td>第一筆資料</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>listen-to-county</th>
+              <td>X</td>
+              <td><code>twzipcode__county</code></td>
+              <td>X</td>
+              <td>縣市<code>&lt;select&gt;</code>的 id ，按縣市篩選郵遞區號</td>
+            </tr>
+            <tr>
+              <th>filter-by-county</th>
+              <td>X</td>
+              <td><code>undefined</code></td>
+              <td>X</td>
+              <td>縣市的 id ，初始時要依哪個縣市篩選郵遞區號</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <div class="row">
       <div class="twelve columns">
         資料來源：<a href="https://github.com/yyc1217/twzipcode-data">twzipcode-data</a>

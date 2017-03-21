@@ -22,7 +22,7 @@ export default {
         },
         id: {
             type: String,
-            default: 'twzipcode__county'
+            default: 'twzipcode__zipcode'
         },
         listenToCounty: {
             type: String,
