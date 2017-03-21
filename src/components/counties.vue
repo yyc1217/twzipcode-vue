@@ -36,25 +36,6 @@ export default {
             counties: counties,
             value: this.selected || counties[0].value
         }
-    },
-    methods: {
-        emitChange (county) {
-
-            if (this.$root.bus) {
-                let id = this.$props.id
-                this.$root.bus.$emit(`${id}:change:county`, {
-                    county
-                })
-            }
-        }
-    },
-    watch: {
-        value: function(county) {
-            this.emitChange(county)
-        }
-    },
-    mounted () {
-        this.emitChange(this.$data.value)
     }
 }
 

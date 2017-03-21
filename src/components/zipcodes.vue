@@ -68,11 +68,10 @@ export default {
         }
     },
     mounted () {
-
         if (this.$root.bus) {
             let countyId = this.$props.listenToCounty
-            this.$root.bus.$on(`${countyId}:change:county`, event => {
-                this.$data.county = event.county;
+            this.$root.bus.$on(`${countyId}:change`, event => {
+                this.$data.county = event.value;
             })
         }
     }
