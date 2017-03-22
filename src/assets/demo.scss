@@ -1,0 +1,58 @@
+.page-title {
+    text-align: center;
+    padding-top: 20px;
+}
+.bookmark {
+    text-decoration: none;
+    color: black;
+}
+.subtitle {
+    margin-top: .5em;
+    text-align: right;
+
+    &--left {
+        text-align: left;
+    }
+
+    & .bookmark {
+        visibility: hidden;
+    }
+
+    &:hover .bookmark {
+        visibility: visible;
+    }
+}
+
+pre {
+    margin-bottom: 0;
+    & code {
+        padding-left: 2em !important;
+    }
+}
+
+table td, table th {
+    text-align: center;
+}
+
+.twzipcode {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.demo {
+    &.twzipcode {
+        font-weight: 700;
+    }
+    &.twzipcode__county {
+        background-color: red;
+        color: white;
+    }
+    &.twzipcode__zipcode.twzipcode__zipcode--groupby {
+        background-color: yellow;
+        color: brown;
+    }
+    &.twzipcode__zipcode {
+        background-color: lightskyblue;
+        color: dimgrey;
+    }
+}

@@ -1,6 +1,6 @@
 <template>
 
-<select class="twzipcode__county" v-model="value" :id="id">
+<select class="twzipcode twzipcode__county" v-model="value" :id="id" :name="name">
     <option v-for="county in counties" :value="county.value">{{ county.text }}</option>
 </select>
 
@@ -23,6 +23,10 @@ export default {
         id: {
             type: String,
             default: 'twzipcode__county'
+        },
+        name: {
+            type: String,
+            default: 'county'
         }
     },
     data () {

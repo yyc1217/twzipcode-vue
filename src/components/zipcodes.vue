@@ -1,6 +1,6 @@
 <template>
 
-<select class="twzipcode__zipcode" v-model="value" :id="id">
+<select class="twzipcode twzipcode__zipcode" v-model="value" :id="id" :name="name">
     <option v-for="option in filterByCountyOptions" :value="option.value">{{ option.text }}</option>
 </select>
 
@@ -23,6 +23,10 @@ export default {
         id: {
             type: String,
             default: 'twzipcode__zipcode'
+        },
+        name: {
+            type: String,
+            default: 'zipcode'
         },
         listenToCounty: {
             type: String,

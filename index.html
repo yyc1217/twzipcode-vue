@@ -6,55 +6,7 @@
   <title>vue-twzipcode</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/monokai.min.css">
-  <style>
-    .page-title {
-      text-align: center;
-      padding-top: 20px;
-    }
-    .subtitle {
-      margin-top: .5em;
-      text-align: right;
-    }
-    .subtitle--left {
-      text-align: left;
-    }
-    pre code {
-      padding-left: 2em !important;
-    }
-    pre {
-      margin-bottom: 0;
-    }
-    a.bookmark {
-      text-decoration: none;
-      color: black;
-    }
-    .subtitle .bookmark {
-      visibility: hidden;
-    }
-    .subtitle:hover .bookmark {
-      visibility: visible;
-    }
-    table td, table th {
-      text-align: center;
-    }
-
-    .twzipcode__county, .twzipcode__zipcode, .twzipcode__zipcode--groupby {
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .twzipcode__county.demo {
-      background-color: red;
-      color: white;
-    }
-    .twzipcode__zipcode.twzipcode__zipcode--groupby.demo {
-      background-color: yellow;
-      color: brown;
-    }
-    .twzipcode__zipcode.demo {
-      background-color: lightskyblue;
-      color: dimgrey;
-    }
-  </style>
+  <link rel="stylesheet" href="/dist/style.css">
 </head>
 
 <body class="container">
@@ -93,7 +45,7 @@ new Vue({
 
       <div class="nine columns">
         <pre><code class="javascript">
-import Zipcode from './components/zipcodes.vue'
+import { Zipcode } from 'vue-twzipcode'
 
 ...
   components: {
@@ -106,7 +58,7 @@ import Zipcode from './components/zipcodes.vue'
         <pre><code class="HTML">
 &lt;twzipcode-county text-template=":id :county-:city"&gt;&lt;/twzipcode-county&gt;
 
-&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;100&quot;&gt;100 臺北市-中正區&lt;/option&gt;
   &lt;option value=&quot;103&quot;&gt;103 臺北市-大同區&lt;/option&gt;
           </code>
@@ -122,7 +74,7 @@ import Zipcode from './components/zipcodes.vue'
 
       <div class="nine columns">
         <pre><code class="javascript">
-import ZipcodeGroupby from './components/zipcodes.groupby.vue'
+import { ZipcodeGroupby } from 'vue-twzipcode'
 
 ...
   components: {
@@ -135,7 +87,7 @@ import ZipcodeGroupby from './components/zipcodes.groupby.vue'
         <pre><code class="HTML">
 &lt;twzipcode-zipcode-groupby&gt;&lt;/twzipcode-zipcode-groupby&gt;
 
-&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
   &lt;optgroup label=&quot;臺北市&quot;&gt;
     &lt;option value=&quot;100&quot;&gt;中正區&lt;/option&gt;
     &lt;option value=&quot;103&quot;&gt;大同區&lt;/option&gt;
@@ -152,7 +104,7 @@ import ZipcodeGroupby from './components/zipcodes.groupby.vue'
 
       <div class="nine columns">
         <pre><code class="javascript">
-import County from './components/counties.vue'
+import { County } from 'vue-twzipcode'
 
 ...
   components: {
@@ -165,7 +117,7 @@ import County from './components/counties.vue'
         <pre><code class="HTML">
 &lt;twzipcode-county&gt;&lt;/twzipcode-county&gt;
 
-&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__county&quot;&gt;
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
   &lt;option value=&quot;臺北市&quot;&gt;臺北市&lt;/option&gt;
   &lt;option value=&quot;基隆市&quot;&gt;基隆市&lt;/option&gt;
           </code>
@@ -183,6 +135,10 @@ import County from './components/counties.vue'
 
         <div class="nine columns">
           <pre><code class="css">
+.twzipcode {
+  font-weight: 700;
+}
+
 .twzipcode__county {
   background-color: red;
   color: white;
@@ -216,7 +172,7 @@ import County from './components/counties.vue'
 &lt;twzipcode-zipcode value-template=&quot;:county:city&quot;
                    text-template=&quot;:id :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
-&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;臺北市中正區&quot;&gt;100 臺北市中正區&lt;/option&gt;
   &lt;option value=&quot;臺北市大同區&quot;&gt;103 臺北市大同區&lt;/option&gt;
           </code>
@@ -254,16 +210,16 @@ import County from './components/counties.vue'
                    text-template=&quot;:id :county / :city&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 
-&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode__county&quot;&gt;
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
   &lt;option value=&quot;臺北市&quot;&gt;Taipei City&lt;/option&gt;
   &lt;option value=&quot;基隆市&quot;&gt;Keelung City&lt;/option&gt;
 
-&lt;select id=&quot;twzipcode__zipcode--groupby&quot; class=&quot;twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
+&lt;select id=&quot;twzipcode__zipcode--groupby&quot; class=&quot;twzipcode twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
   &lt;optgroup label=&quot;Taipei City&quot;&gt;
     &lt;option value=&quot;100&quot;&gt;Zhongzheng District&lt;/option&gt;
     &lt;option value=&quot;103&quot;&gt;Daton District&lt;/option&gt;
 
-&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;100&quot;&gt;100 Taipei City / Zhongzheng District&lt;/option&gt;
   &lt;option value=&quot;103&quot;&gt;103 Taipei City / Daton District&lt;/option&gt;
           </code>
@@ -282,7 +238,7 @@ import County from './components/counties.vue'
         <div class="nine columns">
           <pre><code class="javascript">
 import Vue from 'vue'
-import Zipcode from './components/zipcodes.vue'
+import { Zipcode } from 'vue-twzipcode'
 
 // https://laracasts.com/discuss/channels/vue/use-a-global-event-bus
 const bus = new Vue({})
@@ -323,8 +279,7 @@ new Vue({
       <div class="nine columns">
         <pre><code class="javascript">
 // in js
-import Zipcode from './components/zipcodes.vue'
-import County from './components/counties.vue'
+import { Zipcode, County } from 'vue-twzipcode'
 
 // https://laracasts.com/discuss/channels/vue/use-a-global-event-bus
 const bus = new Vue({})
@@ -353,11 +308,11 @@ const bus = new Vue({})
                    selected=&quot;423&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 
-&lt;select id=&quot;twzipcode__county--8&quot; class=&quot;twzipcode__county&quot;&gt;
+&lt;select id=&quot;twzipcode__county--8&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
   &lt;option value=&quot;臺北市&quot;&gt;臺北市&lt;/option&gt;
   &lt;option value=&quot;基隆市&quot;&gt;基隆市&lt;/option&gt;
 
-&lt;select id=&quot;twzipcode__zipcode--8&quot; class=&quot;twzipcode__zipcode&quot;&gt;
+&lt;select id=&quot;twzipcode__zipcode--8&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;400&quot;&gt;400 臺中市 中　區&lt;/option&gt;
   &lt;option value=&quot;401&quot;&gt;401 臺中市 東　區&lt;/option&gt;
           </code>
@@ -418,9 +373,16 @@ const bus = new Vue({})
             </tr>
             <tr>
               <th>class</th>
-              <td><code>twzipcode__county</code></td>
-              <td><code>twzipcode__zipcode</code></td>
-              <td><code>twzipcode__zipcode twzipcode__zipcode--groupby</code></td>
+              <td><code>twzipcode</code><code>twzipcode__county</code></td>
+              <td><code>twzipcode</code><code>twzipcode__zipcode</code></td>
+              <td><code>twzipcode</code><code>twzipcode__zipcode</code><br><code>twzipcode__zipcode--groupby</code></td>
+              <td>若有指定其他 className ，則會附加在預設值後面。</td>
+            </tr>
+            <tr>
+              <th>name</th>
+              <td><code>county</code></td>
+              <td><code>zipcode</code></td>
+              <td><code>zipcode</code></td>
               <td></td>
             </tr>
             <tr>
@@ -445,6 +407,11 @@ const bus = new Vue({})
               <td>縣市的 id ，初始時要依哪個縣市篩選郵遞區號</td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="5"><small>如果要設定其他 attribute ，只需要按平常方式即可，例如<code>&lt;twzipcode-county size=&quot;10&quot; required&gt;&lt;/twzipcode-county&gt;</code></small></th>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
@@ -456,7 +423,7 @@ const bus = new Vue({})
     </div>
   </div>
 
-  <script src="/dist/build.js"></script>
+  <script src="/dist/main.js"></script>
   <script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
