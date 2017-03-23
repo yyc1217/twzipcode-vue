@@ -7,18 +7,26 @@ let getComponent = (component, propsData = {}) =>
   })
 exports.getComponent = getComponent
 
+/**
+ * 初始化的參數們
+ */
 exports.testInitProps = ({
   component,
   length,
   firstText,
   firstValue,
   id,
+  name,
   classes = []
 }) => {
   const c = getComponent(component)
 
-  it(`should has init id ${id}`, () => {
+  it(`should has id ${id}`, () => {
     c.is(`#${id}`).should.be.true()
+  })
+
+  it(`should has name ${name}`, () => {
+    c.hasAttribute('name', name).should.be.true()
   })
 
   it(`should has option length ${length}`, () => {
@@ -43,6 +51,9 @@ exports.testInitProps = ({
   })
 }
 
+/**
+ * value與text格式修改
+ */
 exports.testTemplate = ({
   component,
   textTemplate,
@@ -68,6 +79,9 @@ exports.testTemplate = ({
   })
 }
 
+/**
+ * i18n
+ */
 exports.testLocale = ({
   component,
   textLocale,
@@ -90,5 +104,20 @@ exports.testLocale = ({
   it(`value should be ${firstValue} in locale ${valueLocale}`, () => {
     let option = c.find('option')[0]
     option.hasAttribute('value', firstValue).should.be.true()
+  })
+}
+
+exports.testSelected = ({
+  component,
+  selected
+}) => {
+  const propsData = {
+    selected
+  }
+  const c = getComponent(component, propsData)
+
+  it(`should select ${selected}`, () => {
+    let option = c.find('option:selected')[0]
+    option.hasAttribute('value', selected).should.be.true()
   })
 }
