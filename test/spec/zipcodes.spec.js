@@ -45,4 +45,12 @@ describe('Zipcode', () => {
     component,
     selected: '423'
   })
+
+  it('should filter by county 澎湖縣', () => {
+    const c = common.getComponent(component, {
+      filterByCounty: '澎湖縣'
+    })
+    let options = c.find('option')
+    options.length.should.equal(6)
+  })
 })
