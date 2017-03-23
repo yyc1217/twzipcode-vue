@@ -1,6 +1,12 @@
 import 'should'
 import { mount } from 'avoriaz'
 
+let getComponent = (component, propsData = {}) =>
+  mount(require(`../../src/components/${component}.vue`), {
+    propsData
+  })
+exports.getComponent = getComponent
+
 exports.testInitProps = ({
   component,
   length,
@@ -9,7 +15,7 @@ exports.testInitProps = ({
   id,
   classes = []
 }) => {
-  const c = mount(require(`../../src/components/${component}.vue`))
+  const c = getComponent(component)
 
   it(`should has init id ${id}`, () => {
     c.is(`#${id}`).should.be.true()
@@ -48,9 +54,8 @@ exports.testTemplate = ({
     textTemplate,
     valueTemplate
   }
-  const c = mount(require(`../../src/components/${component}.vue`), {
-    propsData
-  })
+
+  const c = getComponent(component, propsData)
 
   it(`text should be ${firstText} rendered by ${textTemplate}`, () => {
     let option = c.find('option')[0]
@@ -58,6 +63,31 @@ exports.testTemplate = ({
   })
 
   it(`value should be ${firstValue} rendered by ${valueTemplate}`, () => {
+    let option = c.find('option')[0]
+    option.hasAttribute('value', firstValue).should.be.true()
+  })
+}
+
+exports.testLocale = ({
+  component,
+  textLocale,
+  firstText,
+  valueLocale,
+  firstValue
+}) => {
+  const propsData = {
+    textLocale,
+    valueLocale
+  }
+
+  const c = getComponent(component, propsData)
+
+  it(`text should be ${firstText} in locale ${textLocale}`, () => {
+    let option = c.find('option')[0]
+    option.text().should.eql(firstText)
+  })
+
+  it(`value should be ${firstValue} in locale ${valueLocale}`, () => {
     let option = c.find('option')[0]
     option.hasAttribute('value', firstValue).should.be.true()
   })

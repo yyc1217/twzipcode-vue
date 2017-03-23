@@ -1,8 +1,10 @@
-import { testInitProps, testTemplate } from './common.spec'
+import { testInitProps, testTemplate, testLocale } from './common.spec'
+
+const component = 'counties'
 
 describe('County', () => {
   testInitProps({
-    component: 'counties',
+    component,
     length: 22,
     firstText: '臺北市',
     firstValue: '臺北市',
@@ -14,10 +16,18 @@ describe('County', () => {
   })
 
   testTemplate({
-    component: 'counties',
+    component,
     textTemplate: ':id:name',
     firstText: '臺北市臺北市',
     valueTemplate: ':id:name',
     firstValue: '臺北市臺北市'
+  })
+
+  testLocale({
+    component,
+    textLocale: 'en',
+    firstText: 'Taipei City',
+    valueLocale: 'en',
+    firstValue: '臺北市'
   })
 })
