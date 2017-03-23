@@ -1,6 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -33,22 +33,15 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]?[hash]'
-        }
-      },
-      {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
-          use:  ['css-loader', 'sass-loader']
+          use: ['css-loader', 'sass-loader']
         })
       }
     ]
   },
   plugins: [
-      new ExtractTextPlugin("demo.css")
+    new ExtractTextPlugin('demo.css')
   ],
   resolve: {
     alias: {
