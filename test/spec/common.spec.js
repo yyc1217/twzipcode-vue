@@ -5,6 +5,7 @@ let getComponent = (component, propsData = {}) =>
   mount(require(`../../src/components/${component}.vue`), {
     propsData
   })
+
 exports.getComponent = getComponent
 
 /**
@@ -22,31 +23,31 @@ exports.testInitProps = ({
   const c = getComponent(component)
 
   it(`should has id ${id}`, () => {
-    c.is(`#${id}`).should.be.true()
+    c.element.id.should.eql(id)
   })
 
   it(`should has name ${name}`, () => {
-    c.hasAttribute('name', name).should.be.true()
+    c.element.name.should.eql(name)
   })
 
   it(`should has option length ${length}`, () => {
-    let options = c.find('option')
+    let options = c.element.getElementsByTagName('option')
     options.length.should.eql(length)
   })
 
   it(`should has first option text ${firstText}`, () => {
-    let option = c.find('option')[0]
-    option.text().should.eql(firstText)
+    let option = c.element.getElementsByTagName('option')[0]
+    option.textContent.should.eql(firstText)
   })
 
   it(`should has first option value ${firstValue}`, () => {
-    let option = c.find('option')[0]
-    option.hasAttribute('value', firstValue).should.be.true()
+    let option = c.element.getElementsByTagName('option')[0]
+    option.value.should.eql(firstValue)
   })
 
   it(`should has class ${classes}`, () => {
     classes.forEach(clazz => {
-      c.hasClass(clazz).should.be.true()
+      c.element.classList.contains(clazz)
     })
   })
 }
@@ -69,13 +70,13 @@ exports.testTemplate = ({
   const c = getComponent(component, propsData)
 
   it(`text should be ${firstText} rendered by ${textTemplate}`, () => {
-    let option = c.find('option')[0]
-    option.text().should.eql(firstText)
+    let option = c.element.getElementsByTagName('option')[0]
+    option.textContent.should.eql(firstText)
   })
 
   it(`value should be ${firstValue} rendered by ${valueTemplate}`, () => {
-    let option = c.find('option')[0]
-    option.hasAttribute('value', firstValue).should.be.true()
+    let option = c.element.getElementsByTagName('option')[0]
+    option.value.should.eql(firstValue)
   })
 }
 
@@ -97,13 +98,13 @@ exports.testLocale = ({
   const c = getComponent(component, propsData)
 
   it(`text should be ${firstText} in locale ${textLocale}`, () => {
-    let option = c.find('option')[0]
-    option.text().should.eql(firstText)
+    let option = c.element.getElementsByTagName('option')[0]
+    option.textContent.should.eql(firstText)
   })
 
   it(`value should be ${firstValue} in locale ${valueLocale}`, () => {
-    let option = c.find('option')[0]
-    option.hasAttribute('value', firstValue).should.be.true()
+    let option = c.element.getElementsByTagName('option')[0]
+    option.value.should.eql(firstValue)
   })
 }
 
@@ -129,9 +130,9 @@ exports.testDiffLocale = ({
   const c = getComponent(component, propsData)
 
   it(`should have value ${firstValue} and text ${firstText}`, () => {
-    let option = c.find('option')[0]
-    option.text().should.eql(firstText)
-    option.hasAttribute('value', firstValue).should.be.true()
+    let option = c.element.getElementsByTagName('option')[0]
+    option.textContent.should.eql(firstText)
+    option.value.should.eql(firstValue)
   })
 }
 
@@ -145,7 +146,6 @@ exports.testSelected = ({
   const c = getComponent(component, propsData)
 
   it(`should select ${selected}`, () => {
-    let option = c.find('option:selected')[0]
-    option.hasAttribute('value', selected).should.be.true()
+    c.element.value.should.eql(selected)
   })
 }

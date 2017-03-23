@@ -43,8 +43,8 @@ describe('Zipcode Groupby', () => {
     const c = common.getComponent(component, {
       textLocale: 'en'
     })
-    let optgroup = c.find('optgroup')[0]
-    optgroup.hasAttribute('label', 'Taipei City').should.be.true()
+    let optgroup = c.element.getElementsByTagName('optgroup')[0]
+    optgroup.label.should.eql('Taipei City')
   })
 
   common.testDiffLocale({
