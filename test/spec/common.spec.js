@@ -84,9 +84,9 @@ exports.testTemplate = ({
  */
 exports.testLocale = ({
   component,
-  textLocale,
+  textLocale = 'zh-tw',
   firstText,
-  valueLocale,
+  valueLocale = 'zh-tw',
   firstValue
 }) => {
   const propsData = {
@@ -103,6 +103,34 @@ exports.testLocale = ({
 
   it(`value should be ${firstValue} in locale ${valueLocale}`, () => {
     let option = c.find('option')[0]
+    option.hasAttribute('value', firstValue).should.be.true()
+  })
+}
+
+/**
+ * value和text可以有不同的locale
+ */
+exports.testDiffLocale = ({
+  component,
+  textLocale = 'zh-tw',
+  textTemplate,
+  firstText,
+  valueLocale = 'zh-tw',
+  valueTemplate,
+  firstValue
+}) => {
+  const propsData = {
+    textLocale,
+    valueLocale,
+    textTemplate,
+    valueTemplate
+  }
+
+  const c = getComponent(component, propsData)
+
+  it(`should have value ${firstValue} and text ${firstText}`, () => {
+    let option = c.find('option')[0]
+    option.text().should.eql(firstText)
     option.hasAttribute('value', firstValue).should.be.true()
   })
 }

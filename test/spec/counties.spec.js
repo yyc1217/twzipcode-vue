@@ -32,6 +32,15 @@ describe('County', () => {
     firstValue: '臺北市'
   })
 
+  common.testDiffLocale({
+    component,
+    textTemplate: ':id:name',
+    firstText: '臺北市臺北市',
+    valueLocale: 'en',
+    valueTemplate: ':id:name',
+    firstValue: '臺北市Taipei City'
+  })
+
   common.testSelected({
     component,
     selected: '臺中市'

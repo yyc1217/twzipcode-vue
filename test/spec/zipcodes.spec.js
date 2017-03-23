@@ -32,6 +32,15 @@ describe('Zipcode', () => {
     firstValue: '100'
   })
 
+  common.testDiffLocale({
+    component,
+    textTemplate: ':id:county:city',
+    firstText: '100臺北市中正區',
+    valueLocale: 'en',
+    valueTemplate: ':id:county:city',
+    firstValue: '100Taipei CityZhongzheng District'
+  })
+
   common.testSelected({
     component,
     selected: '423'
