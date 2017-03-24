@@ -1,7 +1,7 @@
 {
   "name": "twzipcode-vue",
   "description": "中華郵政郵遞區號 Vue components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
   "main": "src/index.js",
   "scripts": {
@@ -9,6 +9,22 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyc1217/twzipcode-vue.git"
+  },
+  "keywords": [
+    "Taiwan",
+    "zipcode",
+    "中華郵政",
+    "臺灣",
+    "郵遞區號"
+  ],
+  "homepage": "https://github.com/yyc1217/twzipcode-vue#readme",
+  "bugs": {
+    "url": "https://github.com/yyc1217/twzipcode-vue/issues"
+  },
+  "license": "MIT",
   "dependencies": {
     "vue": "^2.2.1"
   },
