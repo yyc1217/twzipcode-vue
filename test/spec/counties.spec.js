@@ -1,6 +1,5 @@
 import common from './common.spec'
-
-const component = 'counties'
+import { County as component } from '../../src/'
 
 describe('County', () => {
   common.testInitProps({

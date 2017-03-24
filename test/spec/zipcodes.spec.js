@@ -1,6 +1,5 @@
 import common from './common.spec'
-
-const component = 'zipcodes'
+import { Zipcode as component } from '../../src/'
 
 describe('Zipcode', () => {
   common.testInitProps({

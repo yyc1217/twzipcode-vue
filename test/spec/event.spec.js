@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import county from '../../src/components/counties.vue'
-import zipcode from '../../src/components/zipcodes.vue'
+import { Zipcode, County } from '../../src/'
 
 let propsData = {
   template: `<div>
@@ -8,8 +7,8 @@ let propsData = {
                 <zipcode></zipcode>
             </div>`,
   components: {
-    county,
-    zipcode
+    County,
+    Zipcode
   },
   data () {
     return {

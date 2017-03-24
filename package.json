@@ -3,7 +3,7 @@
   "description": "中華郵政郵遞區號 Vue components",
   "version": "1.0.0",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
-  "private": true,
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha-webpack --webpack-config test/webpack.test.config.js test --recursive --require test/.setup",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",

@@ -1,7 +1,6 @@
-import common from './common.spec'
 import 'should'
-
-const component = 'zipcodes.groupby'
+import common from './common.spec'
+import { ZipcodeGroupby as component } from '../../src/'
 
 describe('Zipcode Groupby', () => {
   common.testInitProps({
