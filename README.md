@@ -1,4 +1,4 @@
-# vue-twzipcode
+# twzipcode-vue
 
 > 中華郵政郵遞區號 Vuejs components
 
@@ -6,13 +6,13 @@
 
 ### npm
 ```bash
-npm install vue-twzipcode --save
+npm install twzipcode-vue --save
 ```
 
 ## 用法 Usage
 ```javascript
 import Vue from 'vue'
-import { Zipcode, County, ZipcodeGroupby } from 'vue-twzipcode'
+import { Zipcode, County, ZipcodeGroupby } from 'twzipcode-vue'
 
 new Vue({
   el: '#app',
@@ -31,7 +31,7 @@ new Vue({
 ```
 
 ## Showcases
-[https://yyc1217.github.io/vue-twzipcode/](https://yyc1217.github.io/vue-twzipcode/)
+[https://yyc1217.github.io/twzipcode-vue/](https://yyc1217.github.io/twzipcode-vue/)
 
 ## Build Setup
 
