@@ -2,6 +2,14 @@
 
 > 中華郵政郵遞區號 Vuejs components
 
+[![Travis](https://img.shields.io/travis/yyc1217/twzipcode-vue.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/yyc1217/twzipcode-vue/total.svg)]()
+[![npm](https://img.shields.io/npm/dt/twzipcode-vue.svg)]()
+[![npm](https://img.shields.io/npm/v/twzipcode-vue.svg)]()
+[![GitHub release](https://img.shields.io/github/release/yyc1217/twzipcode-vue.svg)]()
+[![npm](https://img.shields.io/npm/l/twzipcode-vue.svg)]()
+[![GitHub stars](https://img.shields.io/github/stars/yyc1217/twzipcode-vue.svg?style=social&label=Star)]()
+
 ## 安裝 Install
 
 ### npm
