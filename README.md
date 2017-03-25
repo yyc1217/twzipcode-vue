@@ -3,6 +3,7 @@
 > 中華郵政郵遞區號 Vuejs components
 
 [![Travis](https://img.shields.io/travis/yyc1217/twzipcode-vue.svg)]()
+[![Coverage Status](https://coveralls.io/repos/github/yyc1217/twzipcode-vue/badge.svg?branch=master)](https://coveralls.io/github/yyc1217/twzipcode-vue?branch=master)
 [![Github All Releases](https://img.shields.io/github/downloads/yyc1217/twzipcode-vue/total.svg)]()
 [![npm](https://img.shields.io/npm/dt/twzipcode-vue.svg)]()
 [![npm](https://img.shields.io/npm/v/twzipcode-vue.svg)]()
