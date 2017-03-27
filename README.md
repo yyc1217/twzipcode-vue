@@ -11,6 +11,12 @@
 [![npm](https://img.shields.io/npm/l/twzipcode-vue.svg)]()
 [![GitHub stars](https://img.shields.io/github/stars/yyc1217/twzipcode-vue.svg?style=social&label=Star)]()
 
+## 特點 Feature
+- 縣市和郵遞區號自動產生 [demo](https://yyc1217.github.io/twzipcode-vue/#所有郵遞區號)
+- 可修改 value 與 text 的格式 [demo](https://yyc1217.github.io/twzipcode-vue/#value與text格式)
+- 可切換成英語 [demo](https://yyc1217.github.io/twzipcode-vue/#英語)
+- callback [demo](https://yyc1217.github.io/twzipcode-vue/#事件)
+
 ## 安裝 Install
 
 ### npm
