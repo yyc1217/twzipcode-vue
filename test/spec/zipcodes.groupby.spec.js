@@ -5,7 +5,7 @@ import { ZipcodeGroupby as component } from '../../src/'
 describe('Zipcode Groupby', () => {
   common.testInitProps({
     component,
-    length: 368,
+    length: 371,
     firstText: '中正區',
     firstValue: '100',
     id: 'twzipcode__zipcode--groupby',

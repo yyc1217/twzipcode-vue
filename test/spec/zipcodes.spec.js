@@ -4,7 +4,7 @@ import { Zipcode as component } from '../../src/'
 describe('Zipcode', () => {
   common.testInitProps({
     component,
-    length: 368,
+    length: 371,
     firstText: '100 臺北市 中正區',
     firstValue: '100',
     id: 'twzipcode__zipcode',
