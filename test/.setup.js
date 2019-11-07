@@ -1,8 +1,12 @@
-const jsdom = require('jsdom').jsdom
+var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 
 const exposedProperties = ['window', 'navigator', 'document']
 
-global.document = jsdom('')
+const { document } = (new JSDOM('', {
+  url: "http://localhost"
+})).window;
+global.document = document;
 global.window = document.defaultView
 
 Object.keys(document.defaultView).forEach((property) => {
