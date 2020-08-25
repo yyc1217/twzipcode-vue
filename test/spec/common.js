@@ -1,17 +1,15 @@
 import 'should'
-import { mount } from 'avoriaz'
+import { shallowMount } from '@vue/test-utils'
 
-let getComponent = (component, propsData = {}) =>
-  mount(component, {
+const getComponent = (component, propsData = {}) =>
+  shallowMount(component, {
     propsData
   })
-
-exports.getComponent = getComponent
 
 /**
  * 初始化的參數們
  */
-exports.testInitProps = ({
+const testInitProps = ({
   component,
   length,
   firstText,
@@ -23,31 +21,31 @@ exports.testInitProps = ({
   const c = getComponent(component)
 
   it(`should has id ${id}`, () => {
-    c.element.id.should.eql(id)
+    c.attributes().id.should.eql(id)
   })
 
   it(`should has name ${name}`, () => {
-    c.element.name.should.eql(name)
+    c.attributes().name.should.eql(name)
   })
 
   it(`should has option length ${length}`, () => {
-    let options = c.element.getElementsByTagName('option')
+    const options = c.findAll('option')
     options.length.should.eql(length)
   })
 
   it(`should has first option text ${firstText}`, () => {
-    let option = c.element.getElementsByTagName('option')[0]
-    option.textContent.should.eql(firstText)
+    const options = c.findAll('option')
+    options.at(0).text().should.eql(firstText)
   })
 
   it(`should has first option value ${firstValue}`, () => {
-    let option = c.element.getElementsByTagName('option')[0]
-    option.value.should.eql(firstValue)
+    const options = c.findAll('option')
+    options.at(0).element.value.should.eql(firstValue)
   })
 
   it(`should has class ${classes}`, () => {
     classes.forEach(clazz => {
-      c.element.classList.contains(clazz)
+      c.classes().should.containEql(clazz)
     })
   })
 }
@@ -55,7 +53,7 @@ exports.testInitProps = ({
 /**
  * value與text格式修改
  */
-exports.testTemplate = ({
+const testTemplate = ({
   component,
   textTemplate,
   firstText,
@@ -83,7 +81,7 @@ exports.testTemplate = ({
 /**
  * i18n
  */
-exports.testLocale = ({
+const testLocale = ({
   component,
   textLocale = 'zh-tw',
   firstText,
@@ -111,7 +109,7 @@ exports.testLocale = ({
 /**
  * value和text可以有不同的locale
  */
-exports.testDiffLocale = ({
+const testDiffLocale = ({
   component,
   textLocale = 'zh-tw',
   textTemplate,
@@ -136,7 +134,7 @@ exports.testDiffLocale = ({
   })
 }
 
-exports.testSelected = ({
+const testSelected = ({
   component,
   selected
 }) => {
@@ -148,4 +146,13 @@ exports.testSelected = ({
   it(`should select ${selected}`, () => {
     c.element.value.should.eql(selected)
   })
+}
+
+export {
+  getComponent,
+  testInitProps,
+  testTemplate,
+  testLocale,
+  testDiffLocale,
+  testSelected
 }

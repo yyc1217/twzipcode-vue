@@ -1,3 +1,9 @@
-exports.Zipcode = require('./components/zipcodes.vue')
-exports.County = require('./components/counties.vue')
-exports.ZipcodeGroupby = require('./components/zipcodes.groupby.vue')
+import Zipcode from './components/zipcodes.vue'
+import County from './components/counties.vue'
+import ZipcodeGroupby from './components/zipcodes.groupby.vue'
+
+export {
+    Zipcode,
+    County,
+    ZipcodeGroupby
+}

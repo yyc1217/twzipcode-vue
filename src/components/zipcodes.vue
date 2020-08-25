@@ -1,7 +1,9 @@
 <template>
 
 <select class="twzipcode twzipcode__zipcode" v-model="value" :id="id" :name="name">
-    <option v-for="option in filterByCountyOptions" :value="option.value">{{ option.text }}</option>
+    <option v-for="(option, i) in filterByCountyOptions"
+            :key="'option-' + i"
+            :value="option.value">{{ option.text }}</option>
 </select>
 
 </template>

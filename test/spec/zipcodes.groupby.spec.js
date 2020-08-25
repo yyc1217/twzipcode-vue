@@ -1,9 +1,17 @@
+import {
+  testInitProps,
+  testTemplate,
+  testLocale,
+  testDiffLocale,
+  testSelected,
+  getComponent
+} from './common'
+
 import 'should'
-import common from './common.spec'
 import { ZipcodeGroupby as component } from '../../src/'
 
 describe('Zipcode Groupby', () => {
-  common.testInitProps({
+  testInitProps({
     component,
     length: 371,
     firstText: '中正區',
@@ -18,11 +26,11 @@ describe('Zipcode Groupby', () => {
   })
 
   it('should group by 22 counties', () => {
-    const c = common.getComponent(component)
-    c.find('optgroup').length.should.equal(22)
+    const c = getComponent(component)
+    c.findAll('optgroup').length.should.equal(22)
   })
 
-  common.testTemplate({
+  testTemplate({
     component,
     textTemplate: ':id :county:city',
     firstText: '100 臺北市中正區',
@@ -30,7 +38,7 @@ describe('Zipcode Groupby', () => {
     firstValue: '臺北市中正區'
   })
 
-  common.testLocale({
+  testLocale({
     component,
     textLocale: 'en',
     firstText: 'Zhongzheng District',
@@ -39,14 +47,14 @@ describe('Zipcode Groupby', () => {
   })
 
   it('optgroup locale should follow text locale', () => {
-    const c = common.getComponent(component, {
+    const c = getComponent(component, {
       textLocale: 'en'
     })
     let optgroup = c.element.getElementsByTagName('optgroup')[0]
     optgroup.label.should.eql('Taipei City')
   })
 
-  common.testDiffLocale({
+  testDiffLocale({
     component,
     textTemplate: ':id:county:city',
     firstText: '100臺北市中正區',
@@ -55,7 +63,7 @@ describe('Zipcode Groupby', () => {
     firstValue: '100Taipei CityZhongzheng District'
   })
 
-  common.testSelected({
+  testSelected({
     component,
     selected: '423'
   })
