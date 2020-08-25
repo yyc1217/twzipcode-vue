@@ -43,7 +43,7 @@
     "jsdom": "^15.2.1",
     "mocha": "^6.2.2",
     "mocha-webpack": "^1.1.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.14.1",
     "nyc": "^14.1.1",
     "sass-loader": "^5.0.1",
     "should": "^11.2.1",
@@ -52,7 +52,7 @@
     "vue-loader": "^11.3.4",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^2.7.0",
-    "webpack-dev-server": "^3.1.11"
+    "webpack-dev-server": "^3.11.0"
   },
   "standard": {
     "globals": [
