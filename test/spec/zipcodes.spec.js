@@ -1,8 +1,16 @@
-import common from './common.spec'
+import {
+  testInitProps,
+  testTemplate,
+  testLocale,
+  testDiffLocale,
+  testSelected,
+  getComponent
+} from './common'
+
 import { Zipcode as component } from '../../src/'
 
 describe('Zipcode', () => {
-  common.testInitProps({
+  testInitProps({
     component,
     length: 371,
     firstText: '100 臺北市 中正區',
@@ -15,7 +23,7 @@ describe('Zipcode', () => {
     ]
   })
 
-  common.testTemplate({
+  testTemplate({
     component,
     textTemplate: ':id :county:city',
     firstText: '100 臺北市中正區',
@@ -23,7 +31,7 @@ describe('Zipcode', () => {
     firstValue: '臺北市中正區'
   })
 
-  common.testLocale({
+  testLocale({
     component,
     textLocale: 'en',
     firstText: '100 Taipei City Zhongzheng District',
@@ -31,7 +39,7 @@ describe('Zipcode', () => {
     firstValue: '100'
   })
 
-  common.testDiffLocale({
+  testDiffLocale({
     component,
     textTemplate: ':id:county:city',
     firstText: '100臺北市中正區',
@@ -40,16 +48,16 @@ describe('Zipcode', () => {
     firstValue: '100Taipei CityZhongzheng District'
   })
 
-  common.testSelected({
+  testSelected({
     component,
     selected: '423'
   })
 
   it('should filter by county 澎湖縣', () => {
-    const c = common.getComponent(component, {
+    const c = getComponent(component, {
       filterByCounty: '澎湖縣'
     })
-    let options = c.find('option')
+    let options = c.findAll('option')
     options.length.should.equal(6)
   })
 })

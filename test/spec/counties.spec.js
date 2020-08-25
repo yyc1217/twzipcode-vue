@@ -1,8 +1,15 @@
-import common from './common.spec'
+import {
+          testInitProps,
+          testTemplate,
+          testLocale,
+          testDiffLocale,
+          testSelected
+       } from './common'
+
 import { County as component } from '../../src/'
 
 describe('County', () => {
-  common.testInitProps({
+  testInitProps({
     component,
     length: 22,
     firstText: '臺北市',
@@ -15,7 +22,7 @@ describe('County', () => {
     ]
   })
 
-  common.testTemplate({
+  testTemplate({
     component,
     textTemplate: ':id:name',
     firstText: '臺北市臺北市',
@@ -23,7 +30,7 @@ describe('County', () => {
     firstValue: '臺北市臺北市'
   })
 
-  common.testLocale({
+  testLocale({
     component,
     textLocale: 'en',
     firstText: 'Taipei City',
@@ -31,7 +38,7 @@ describe('County', () => {
     firstValue: '臺北市'
   })
 
-  common.testDiffLocale({
+  testDiffLocale({
     component,
     textTemplate: ':id:name',
     firstText: '臺北市臺北市',
@@ -40,7 +47,7 @@ describe('County', () => {
     firstValue: '臺北市Taipei City'
   })
 
-  common.testSelected({
+  testSelected({
     component,
     selected: '臺中市'
   })

@@ -1,8 +1,12 @@
 <template>
 
 <select class="twzipcode twzipcode__zipcode twzipcode__zipcode--groupby" v-model="value" :id="id" :name="name">
-    <optgroup v-for="(zipcodes, county) in data" :label="county">
-        <option v-for="zipcode in zipcodes" :value="zipcode.value">{{ zipcode.text }}</option>
+    <optgroup v-for="(zipcodes, county) in data"
+              :key="'optgroup-' + county"
+              :label="county">
+        <option v-for="(zipcode, i) in zipcodes"
+                :key="'option-' + i"
+                :value="zipcode.value">{{ zipcode.text }}</option>
     </optgroup>
 </select>
 
