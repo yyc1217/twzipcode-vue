@@ -1706,12 +1706,13 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-avoriaz@^1.16.0:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/avoriaz/-/avoriaz-1.16.0.tgz#05d6ac564a31955555d22f26907acb64cc12e3e5"
-  integrity sha1-BdasVkoxlVVV0i8mkHrLZMwS4+U=
+avoriaz@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/avoriaz/-/avoriaz-6.3.0.tgz#ede148cf0be06f792ff8253a68e0e0483b27c2de"
+  integrity sha512-NjqjZ7hj5DZx5tQ1aZ6Fot9F1kQCNHdNQcdnaKR1CbRwPR2k4ntQrp06Wc9ScfB6EGl+NDEk0Lh1WTZ8Me/9Zw==
   dependencies:
-    vue-add-globals "^1.0.1"
+    lodash "^4.17.4"
+    vue-add-globals "^2.0.0"
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -8582,10 +8583,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-add-globals@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vue-add-globals/-/vue-add-globals-1.0.1.tgz#151f241426e70cbc790a1f31bb0f4435d7575efc"
-  integrity sha1-FR8kFCbnDLx5Ch8xuw9ENddXXvw=
+vue-add-globals@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-add-globals/-/vue-add-globals-2.0.1.tgz#c9fba6faac44f679ec15d5a9637f518b181fc44d"
+  integrity sha512-NvpO+te1DsZfZq9ecPR6lJrsVm+d+R2yTgQZUEme9zS23Q+wfGYojIPgBkr7Z0ZCv3OpbEG+xd/3KSiB856QOg==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
