@@ -4,7 +4,7 @@
             :value="value"
             :id="id"
             :name="name"
-            @input="$emit('input', $event.target.value)">
+            @change="$emit('input', $event.target.value)">
         <option v-for="(option, i) in filterByCountyOptions"
                 :key="'option-' + i"
                 :value="option.value">{{ option.text }}</option>

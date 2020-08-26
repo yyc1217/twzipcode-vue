@@ -4,7 +4,7 @@
             :value="value"
             :id="id"
             :name="name"
-            @input="$emit('input', $event.target.value)">
+            @change="$emit('input', $event.target.value)">
 
         <optgroup v-for="(zipcodes, county) in dataList"
                   :key="'optgroup-' + county"
