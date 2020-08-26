@@ -1,10 +1,13 @@
 <template>
 
-<select class="twzipcode twzipcode__zipcode" v-model="value" :id="id" :name="name">
-    <option v-for="(option, i) in filterByCountyOptions"
-            :key="'option-' + i"
-            :value="option.value">{{ option.text }}</option>
-</select>
+    <select class="twzipcode twzipcode__zipcode"
+            v-model="value"
+            :id="id"
+            :name="name">
+        <option v-for="(option, i) in filterByCountyOptions"
+                :key="'option-' + i"
+                :value="option.value">{{ option.text }}</option>
+    </select>
 
 </template>
 
@@ -40,12 +43,13 @@ export default {
     },
     data () {
 
-        let dataName = 'zipcodes'
-        let transform = (option, valueDict, textDict) => {
+        const dataName = 'zipcodes'
+        const transform = (option, valueDict, textDict) => {
             option.county = textDict[option.id].county
             return option
         }
-        let zipcodes = this.getData({
+
+        const zipcodes = this.getData({
             dataName,
             transform
         })
@@ -63,9 +67,9 @@ export default {
                 return this.zipcodes
             }
 
-            let filteredList = this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
+            const filteredList = this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
 
-            let inList = filteredList.filter(option => option.value === this.$data.value).length > 0
+            const inList = filteredList.filter(option => option.value === this.$data.value).length > 0
             if (!inList) {
                 this.$data.value = filteredList[0].value
             }

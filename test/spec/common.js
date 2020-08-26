@@ -28,6 +28,11 @@ const testInitProps = ({
     c.attributes().name.should.eql(name)
   })
 
+  it(`should has default value ${firstValue}`, () => {
+    const select = c.find('select')
+    select.element.value.should.eql(firstValue)
+  })
+
   it(`should has option length ${length}`, () => {
     const options = c.findAll('option')
     options.length.should.eql(length)
@@ -136,15 +141,15 @@ const testDiffLocale = ({
 
 const testSelected = ({
   component,
-  selected
+  value
 }) => {
   const propsData = {
-    selected
+    value
   }
   const c = getComponent(component, propsData)
 
-  it(`should select ${selected}`, () => {
-    c.element.value.should.eql(selected)
+  it(`should select ${value}`, () => {
+    c.element.value.should.eql(value)
   })
 }
 

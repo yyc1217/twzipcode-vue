@@ -17,9 +17,9 @@ export default {
   },
   methods: {
     getData ({ dataName, transform = identity }) {
-      let ids = twzipcode()[dataName].map(data => data.id)
-      let valueDict = keyBy(twzipcode(this.valueLocale)[dataName], 'id')
-      let textDict = keyBy(twzipcode(this.textLocale)[dataName], 'id')
+      const ids = twzipcode()[dataName].map(data => data.id)
+      const valueDict = keyBy(twzipcode(this.valueLocale)[dataName], 'id')
+      const textDict = keyBy(twzipcode(this.textLocale)[dataName], 'id')
 
       return this.toOptions(ids, valueDict, textDict)
                 .map(option => transform(option, valueDict, textDict))
