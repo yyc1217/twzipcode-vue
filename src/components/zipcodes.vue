@@ -1,9 +1,10 @@
 <template>
 
     <select class="twzipcode twzipcode__zipcode"
-            v-model="value"
+            :value="value"
             :id="id"
-            :name="name">
+            :name="name"
+            @input="$emit('input', $event.target.value)">
         <option v-for="(option, i) in filterByCountyOptions"
                 :key="'option-' + i"
                 :value="option.value">{{ option.text }}</option>
@@ -13,6 +14,8 @@
 
 <script>
 import mixin from './mixin'
+
+const DATA_NAME = 'zipcodes'
 
 export default {
     mixins: [mixin],
@@ -33,56 +36,49 @@ export default {
             type: String,
             default: 'zipcode'
         },
-        listenToCounty: {
+        value: {
             type: String,
-            default: 'twzipcode__county'
+            default: '100'
         },
         filterByCounty: {
-            type: String
+            type: String,
+            required: false
         }
     },
+
     data () {
-
-        const dataName = 'zipcodes'
-        const transform = (option, valueDict, textDict) => {
-            option.county = textDict[option.id].county
-            return option
-        }
-
-        const zipcodes = this.getData({
-            dataName,
-            transform
-        })
-
-        return {
-            zipcodes: zipcodes,
-            county: this.filterByCounty,
-            value: this.selected || zipcodes[0].value,
-        }
+        return {}
     },
+    
     computed: {
+
+        zipcodes () {
+
+            const transform = (option, valueDict, textDict) => {
+                option.county = textDict[option.id].county
+                return option
+            }
+
+            return this.getData({
+                dataName: DATA_NAME,
+                transform
+            })
+        },
+
         filterByCountyOptions () {
 
-            if (!this.$data.county) {
+            if (!this.filterByCounty) {
                 return this.zipcodes
             }
 
-            const filteredList = this.zipcodes.filter(zipcode => zipcode.county === this.$data.county)
+            const filteredList = this.zipcodes.filter(zipcode => zipcode.county === this.filterByCounty)
 
-            const inList = filteredList.filter(option => option.value === this.$data.value).length > 0
+            const inList = filteredList.filter(option => option.value === this.value).length > 0
             if (!inList) {
-                this.$data.value = filteredList[0].value
+                this.$emit('input', filteredList[0].value)
             }
 
             return filteredList
-        }
-    },
-    mounted () {
-        if (this.$root.bus) {
-            let countyId = this.$props.listenToCounty
-            this.$root.bus.$on(`${countyId}:change`, event => {
-                this.$data.county = event.value;
-            })
         }
     }
 }

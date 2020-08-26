@@ -50,7 +50,7 @@ describe('Zipcode', () => {
 
   testSelected({
     component,
-    selected: '423'
+    value: '423'
   })
 
   it('should filter by county 澎湖縣', () => {
