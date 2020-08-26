@@ -65,6 +65,6 @@ describe('Zipcode Groupby', () => {
 
   testSelected({
     component,
-    selected: '423'
+    value: '423'
   })
 })
