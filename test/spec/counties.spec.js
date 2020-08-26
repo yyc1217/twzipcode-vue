@@ -49,6 +49,6 @@ describe('County', () => {
 
   testSelected({
     component,
-    selected: '臺中市'
+    value: '臺中市'
   })
 })
