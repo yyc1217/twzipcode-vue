@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import 'should'
 
 import { Zipcode, County } from '../../src/'
