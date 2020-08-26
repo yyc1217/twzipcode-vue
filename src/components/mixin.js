@@ -10,9 +10,6 @@ export default {
     textLocale: {
       type: String,
       default: 'zh-tw'
-    },
-    selected: {
-      type: String
     }
   },
   methods: {
@@ -41,25 +38,6 @@ export default {
       return Object.keys(object).reduce((text, key) => {
         return text.replace(`:${key}`, object[key])
       }, template)
-    },
-
-    emitChange (value) {
-      if (this.$root.bus) {
-        let id = this.$props.id
-        this.$root.bus.$emit(`${id}:change`, {
-          value
-        })
-      }
     }
-  },
-
-  watch: {
-    value: function (value) {
-      this.emitChange(value)
-    }
-  },
-
-  mounted () {
-    this.emitChange(this.$data.value)
   }
 }
