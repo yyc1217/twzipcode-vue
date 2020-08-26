@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>twzipcode-vue</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/monokai.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/monokai.min.css">
   <link rel="stylesheet" href="dist/demo.css">
 </head>
 
@@ -165,11 +165,13 @@ import { County } from 'twzipcode-vue'
             <h5 class="subtitle" id="value與text格式"><a href="#value與text格式" class="bookmark">#</a> value與text格式</h5>
             <twzipcode-zipcode id="twzipcode__zipcode--5"
                                value-template=":county:city"
+                               value="臺北市信義區"
                                text-template=":id :county:city"></twzipcode-zipcode>
           </div>
             <div class="nine columns">
                 <pre><code class="HTML">
 &lt;twzipcode-zipcode value-template=&quot;:county:city&quot;
+                   value=&quot;臺北市信義區&quot;
                    text-template=&quot;:id :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
@@ -230,34 +232,19 @@ import { County } from 'twzipcode-vue'
       <div class="row">
         <div class="three columns">
           <h4 class="subtitle" id="事件"><a href="#事件" class="bookmark"># </a>事件</h4>
-          <twzipcode-zipcode id="twzipcode__zipcode--7"></twzipcode-zipcode>
+          <twzipcode-zipcode id="twzipcode__zipcode--7"
+                             @input="zipcode => document.getElementById('demoCallback').textContent = zipcode"></twzipcode-zipcode>
           <p>demoCallback：<code id="demoCallback"></code></p>
-          <p><small>若有在 parent 的 data 給予 bus 參數作為事件的 emitter ，則 components 下的每個 component 會分別 emit<code>${id}:change</code>事件，並送出一個更新後的值<code>value</code>；可使用<code>$on</code>來接收。</small><p>
+          <p><small>若 component 的 <code>value</code> 改變，會 emit 一個 <code>input</code> 事件，並以參數方式回傳更新值。</small><p>
         </div>
 
         <div class="nine columns">
-          <pre><code class="javascript">
-import Vue from 'vue'
-import { Zipcode } from 'twzipcode-vue'
+          <pre><code class="HTML">
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
+            @input=&quot;zipcode =&gt; document.getElementById('demoCallback').textContent = zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
-// https://laracasts.com/discuss/channels/vue/use-a-global-event-bus
-const bus = new Vue({})
-
-bus.$on('twzipcode__zipcode:change', function(event) {
-  document.getElementById('demoCallback').textContent = event.value
-})
-
-new Vue({
-  el: '#app',
-  components: {
-    TwzipcodeCounty: County
-  },
-  data () {
-    return {
-      bus
-    }
-  }
-})
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
+            v-model=&quot;zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
           </code>
           </pre>
         </div>
@@ -267,22 +254,16 @@ new Vue({
       <div class="three columns">
         <h4 class="subtitle" id="依縣市篩選"><a href="#依縣市篩選" class="bookmark">#</a> 依縣市篩選</h4>
         <twzipcode-county id="twzipcode__county--8"
-                          selected="臺中市"></twzipcode-county>
+                          v-model="myCounty"></twzipcode-county>
 
         <twzipcode-zipcode id="twzipcode__zipcode--8"
-                           listen-to-county="twzipcode__county--8"
-                           filter-by-county="臺中市"
-                           selected="423"></twzipcode-zipcode>
-        <small>若只有一組縣市與郵遞區號，則無需任何更動；若有多組，則需要指定<code>id</code>，以便在切換縣市時不會影響到其他組的郵遞區號。</small>
+                           v-model="myZipcode"
+                           :filter-by-county="myCounty"></twzipcode-zipcode>
       </div>
 
       <div class="nine columns">
         <pre><code class="javascript">
-// in js
 import { Zipcode, County } from 'twzipcode-vue'
-
-// https://laracasts.com/discuss/channels/vue/use-a-global-event-bus
-const bus = new Vue({})
 
 ...
   components: {
@@ -291,7 +272,8 @@ const bus = new Vue({})
   },
   data () {
     return {
-      bus
+      myCounty: '臺中市',
+      myZipcode: ''
     }
   }
 ...
@@ -299,22 +281,12 @@ const bus = new Vue({})
         </pre>
 
         <pre><code class="HTML">
-&lt;twzipcode-county id=&quot;twzipcode__county--8&quot;
-                  selected=&quot;臺中市&quot;&gt;&lt;/twzipcode-county&gt;
+&lt;twzipcode-county id=&quot;twzipcode__county&quot;
+          v-model=&quot;myCounty&quot;&gt;&lt;/twzipcode-county&gt;
 
-&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode--8&quot;
-                   listen-to-county=&quot;twzipcode__county--8&quot;
-                   filter-by-county=&quot;臺中市&quot;
-                   selected=&quot;423&quot;&gt;&lt;/twzipcode-zipcode&gt;
-
-
-&lt;select id=&quot;twzipcode__county--8&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
-  &lt;option value=&quot;臺北市&quot;&gt;臺北市&lt;/option&gt;
-  &lt;option value=&quot;基隆市&quot;&gt;基隆市&lt;/option&gt;
-
-&lt;select id=&quot;twzipcode__zipcode--8&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
-  &lt;option value=&quot;400&quot;&gt;400 臺中市 中　區&lt;/option&gt;
-  &lt;option value=&quot;401&quot;&gt;401 臺中市 東　區&lt;/option&gt;
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
+           v-model=&quot;myZipcode&quot;
+           :filter-by-county=&quot;myCounty&quot;&gt;&lt;/twzipcode-zipcode&gt;
           </code>
         </pre>
       </div>
@@ -386,18 +358,11 @@ const bus = new Vue({})
               <td></td>
             </tr>
             <tr>
-              <th>selected</th>
+              <th>value</th>
               <td>第一筆資料</td>
               <td>第一筆資料</td>
               <td>第一筆資料</td>
-              <td>以 value 為準，若有更動 value 的格式，則需符合更改後格式。</td>
-            </tr>
-            <tr>
-              <th>listen-to-county</th>
-              <td>X</td>
-              <td><code>twzipcode__county</code></td>
-              <td>X</td>
-              <td>縣市<code>&lt;select&gt;</code>的 id ，按縣市篩選郵遞區號</td>
+              <td>可使用<code>v-model</code>綁定<a href="#依縣市篩選">綁定</a>。<br />若有更動 value 的<a href="#value與text格式">格式</a>，則需符合更改後格式。</td>
             </tr>
             <tr>
               <th>filter-by-county</th>
@@ -424,7 +389,7 @@ const bus = new Vue({})
   </div>
 
   <script src="dist/demo.js"></script>
-  <script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
   </script>

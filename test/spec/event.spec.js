@@ -8,7 +8,7 @@ const parentComponent = {
   template: `<div>
                 <county v-model="myCounty"></county>
                 <zipcode v-model="myZipcode"
-                         :filterByCounty="myCounty"></zipcode>
+                         :filter-by-county="myCounty"></zipcode>
             </div>`,
   components: {
     County,
