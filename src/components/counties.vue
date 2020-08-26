@@ -4,7 +4,7 @@
             :value="value"
             :id="id"
             :name="name"
-            @input="$emit('input', $event.target.value)">
+            @change="$emit('input', $event.target.value)">
         <option v-for="(county, i) in counties"
                 :key="'option-' + i"
                 :value="county.value">{{ county.text }}</option>

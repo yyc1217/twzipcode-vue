@@ -1,10 +1,14 @@
 import Vue from 'vue'
-import { Zipcode, County } from '../../src/'
+import 'should'
 
-let propsData = {
+import { Zipcode, County } from '../../src/'
+import { mount } from '@vue/test-utils'
+
+const parentComponent = {
   template: `<div>
-                <county></county>
-                <zipcode></zipcode>
+                <county v-model="myCounty"></county>
+                <zipcode v-model="myZipcode"
+                         :filterByCounty="myCounty"></zipcode>
             </div>`,
   components: {
     County,
@@ -12,30 +16,21 @@ let propsData = {
   },
   data () {
     return {
-      bus: new Vue({})
+      myCounty: '',
+      myZipcode: ''
     }
   }
 }
 
-let createElem = id => {
-  const elm = document.createElement('div')
-  elm.id = id
-  document.body.appendChild(elm)
-  return elm
-}
-
 describe('Event', () => {
-  it('should change zipcode value while county value is changed', done => {
-    let elm = createElem('abcd')
-    let vm = new Vue(propsData).$mount(elm)
+  it('should change zipcode value while county value is changed', async () => {
+    const c = mount(parentComponent)
 
-    let countySelect = vm.$children[0]
-    let zipcodeSelect = vm.$children[1]
+    const countySelectOptions = c.findComponent(County).findAll('option')
+    // 澎湖縣
+    await countySelectOptions.at(16).setSelected()
 
-    countySelect.value = '澎湖縣'
-    zipcodeSelect.$nextTick(() => {
-      zipcodeSelect.value.should.eql('880')
-      done()
-    })
+    const zipcodeSelect = c.findComponent(Zipcode)
+    zipcodeSelect.element.value.should.eql('880')
   })
 })
