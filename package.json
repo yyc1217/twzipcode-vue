@@ -39,7 +39,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.1.0",
     "coveralls": "^3.0.7",
-    "cross-env": "^3.0.0",
+    "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "file-loader": "^6.0.0",
     "jest": "^26.4.2",
