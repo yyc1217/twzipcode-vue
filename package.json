@@ -48,7 +48,7 @@
     "nyc": "^14.1.1",
     "sass-loader": "^10.0.1",
     "should": "^13.2.3",
-    "standard": "^15.0.0",
+    "standard": "^16.0.1",
     "twzipcode-data": "^1.6.0",
     "vue-jest": "^3.0.6",
     "vue-loader": "^15.9.3",
