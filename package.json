@@ -42,7 +42,7 @@
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.0",
     "file-loader": "^6.0.0",
-    "jest": "^26.4.2",
+    "jest": "^27.0.3",
     "mini-css-extract-plugin": "^1.0.0",
     "node-sass": "^5.0.0",
     "nyc": "^15.1.0",
