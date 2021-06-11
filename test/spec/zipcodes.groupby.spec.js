@@ -32,7 +32,7 @@ describe('Zipcode Groupby', () => {
 
   testTemplate({
     component,
-    textTemplate: ':id :county:city',
+    textTemplate: ':zipcode :county:city',
     firstText: '100 臺北市中正區',
     valueTemplate: ':county:city',
     firstValue: '臺北市中正區'
@@ -56,10 +56,10 @@ describe('Zipcode Groupby', () => {
 
   testDiffLocale({
     component,
-    textTemplate: ':id:county:city',
+    textTemplate: ':zipcode:county:city',
     firstText: '100臺北市中正區',
     valueLocale: 'en',
-    valueTemplate: ':id:county:city',
+    valueTemplate: ':zipcode:county:city',
     firstValue: '100Taipei CityZhongzheng District'
   })
 

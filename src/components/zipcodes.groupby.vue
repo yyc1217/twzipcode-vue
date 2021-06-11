@@ -35,7 +35,7 @@ export default {
         },
         valueTemplate: {
             type: String,
-            default: ':id'
+            default: ':zipcode'
         },
         id: {
             type: String,
