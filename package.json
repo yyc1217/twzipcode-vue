@@ -46,7 +46,7 @@
     "mini-css-extract-plugin": "^1.0.0",
     "node-sass": "^5.0.0",
     "nyc": "^15.1.0",
-    "sass-loader": "^10.0.1",
+    "sass-loader": "^12.1.0",
     "should": "^13.2.3",
     "standard": "16.0.3",
     "twzipcode-data": "^2.0.0-alpha.2",
