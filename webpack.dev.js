@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -10,7 +11,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    clean: true
   },
   module: {
     rules: [
@@ -52,6 +54,9 @@ module.exports = {
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
     })
   ],
   resolve: {
@@ -61,7 +66,8 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    open: true
   },
   performance: {
     hints: false
