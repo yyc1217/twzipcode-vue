@@ -3,12 +3,17 @@
   "description": "中華郵政郵遞區號 Vue components",
   "version": "v2.0.0",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
-  "main": "src/index.js",
+  "main": "dist/twzipcode.umd.js",
+  "module": "src/index.js",
+  "unpkg": "dist/twzipcode.umd.js",
   "browser": {
     "./zipcode": "src/components/zipcodes.vue",
     "./zipcode-groupby": "src/components/zipcodes.groupby.vue",
     "./county": "src/components/counties.vue"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest --config test/jest.config.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",

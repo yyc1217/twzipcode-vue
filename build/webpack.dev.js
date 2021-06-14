@@ -6,7 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = merge(common, {
   mode: 'development',
   entry: {
-    demo: './src/demo/demo.js'
+    demo: './src/demo/demo.js',
+    twzipcode: './src/index.js'
   },
   plugins: [
     new MiniCssExtractPlugin({
