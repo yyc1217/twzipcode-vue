@@ -31,6 +31,11 @@ npm install twzipcode-vue --save
 import Vue from 'vue'
 import { Zipcode, County, ZipcodeGroupby } from 'twzipcode-vue'
 
+// or
+import Zipcode from 'twzipcode-vue/zipcode'
+import ZipcodeGroupby from 'twzipcode-vue/zipcode-groupby'
+import County from 'twzipcode-vue/county'
+
 new Vue({
   el: '#app',
   components: {

@@ -4,6 +4,11 @@
   "version": "v2.0.0",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
   "main": "src/index.js",
+  "browser": {
+    "./zipcode": "src/components/zipcodes.vue",
+    "./zipcode-groupby": "src/components/zipcodes.groupby.vue",
+    "./county": "src/components/counties.vue"
+  },
   "scripts": {
     "test": "jest --config test/jest.config.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
