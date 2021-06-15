@@ -16,7 +16,6 @@
   ],
   "scripts": {
     "test": "jest --config test/jest.config.js",
-    "coveralls": "yarn run test && cat ./test/coverage/lcov.info | coveralls",
     "dev": "webpack serve --config=build/webpack.dev.js",
     "prod": "webpack --progress --config=build/webpack.prod.js"
   },
