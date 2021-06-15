@@ -22,11 +22,11 @@ export default {
     props: {
         textTemplate: {
             type: String,
-            default: ':id :county :city'
+            default: ':zipcode :county :city'
         },
         valueTemplate: {
             type: String,
-            default: ':id'
+            default: ':zipcode'
         },
         id: {
             type: String,

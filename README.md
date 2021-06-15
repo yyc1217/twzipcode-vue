@@ -4,10 +4,8 @@
 
 [![Travis](https://img.shields.io/travis/yyc1217/twzipcode-vue.svg)]()
 [![Coverage Status](https://coveralls.io/repos/github/yyc1217/twzipcode-vue/badge.svg?branch=master)](https://coveralls.io/github/yyc1217/twzipcode-vue?branch=master)
-[![Github All Releases](https://img.shields.io/github/downloads/yyc1217/twzipcode-vue/total.svg)]()
 [![npm](https://img.shields.io/npm/dt/twzipcode-vue.svg)](https://www.npmjs.com/package/twzipcode-vue)
 [![npm](https://img.shields.io/npm/v/twzipcode-vue.svg)](https://www.npmjs.com/package/twzipcode-vue)
-[![GitHub release](https://img.shields.io/github/release/yyc1217/twzipcode-vue.svg)]()
 [![npm](https://img.shields.io/npm/l/twzipcode-vue.svg)]()
 [![dependencies](https://david-dm.org/yyc1217/twzipcode-vue.svg)](https://david-dm.org/yyc1217/twzipcode-vue)
 [![devDependency](https://david-dm.org/yyc1217/twzipcode-vue/dev-status.svg)](https://david-dm.org/yyc1217/twzipcode-vue#info=devDependencies)
@@ -30,6 +28,11 @@ npm install twzipcode-vue --save
 ```javascript
 import Vue from 'vue'
 import { Zipcode, County, ZipcodeGroupby } from 'twzipcode-vue'
+
+// or
+import Zipcode from 'twzipcode-vue/zipcode'
+import ZipcodeGroupby from 'twzipcode-vue/zipcode-groupby'
+import County from 'twzipcode-vue/county'
 
 new Vue({
   el: '#app',

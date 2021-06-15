@@ -3,14 +3,21 @@
   "description": "中華郵政郵遞區號 Vue components",
   "version": "v2.0.0",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
-  "main": "src/index.js",
+  "main": "dist/twzipcode.umd.js",
+  "module": "src/index.js",
+  "unpkg": "dist/twzipcode.umd.js",
+  "browser": {
+    "./zipcode": "src/components/zipcodes.vue",
+    "./zipcode-groupby": "src/components/zipcodes.groupby.vue",
+    "./county": "src/components/counties.vue"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest --config test/jest.config.js",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build:dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
-    "watch:dev": "yarn run build:dev --watch",
-    "build:prod": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "dev": "webpack serve --config=build/webpack.dev.js",
+    "prod": "webpack --progress --config=build/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -29,33 +36,32 @@
   },
   "license": "MIT",
   "dependencies": {
-    "vue": "^2.6.10"
+    "vue": "^2.6.14"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
-    "@babel/plugin-transform-runtime": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
-    "@vue/test-utils": "^1.0.4",
+    "@babel/core": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "@vue/test-utils": "^1.2.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "8.2.2",
-    "coveralls": "^3.0.7",
-    "cross-env": "^7.0.2",
-    "css-loader": "^5.0.0",
+    "css-loader": "^5.2.6",
     "file-loader": "^6.0.0",
-    "jest": "^26.4.2",
+    "html-webpack-plugin": "^5.3.1",
+    "jest": "^27.0.4",
     "mini-css-extract-plugin": "^1.0.0",
-    "node-sass": "^5.0.0",
-    "nyc": "^15.1.0",
-    "sass-loader": "^10.0.1",
+    "node-sass": "^6.0.0",
+    "sass-loader": "^12.1.0",
     "should": "^13.2.3",
     "standard": "16.0.3",
-    "twzipcode-data": "^1.6.0",
+    "twzipcode-data": "^2.0.0-alpha.2",
     "vue-jest": "^3.0.6",
     "vue-loader": "^15.9.3",
-    "vue-template-compiler": "^2.6.12",
-    "webpack": "^5.1.3",
-    "webpack-cli": "^4.0.0",
-    "webpack-dev-server": "^3.11.0"
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
   },
   "standard": {
     "globals": [

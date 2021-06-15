@@ -1,0 +1,147 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>twzipcode-vue</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/monokai.min.css"><script defer="defer" src="demo.js"></script><link href="demo.css" rel="stylesheet"></head><body class="container"><div id="app"><div class="row"><div class="twelve columns"><h3 class="page-title">臺灣郵遞區號 Vue components</h3></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="基本設定"><a href="#基本設定" class="bookmark">#</a> 基本設定</h4></div><div class="nine columns"><pre><code class="javascript">
+import Vue from 'vue'
+
+new Vue({
+  el: '#app',
+  components: {
+    // ... //
+  }
+})
+        </code></pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="所有郵遞區號"><a href="#所有郵遞區號" class="bookmark">#</a> 所有郵遞區號</h4><twzipcode-zipcode id="twzipcode__zipcode--1" text-template=":zipcode :county-:city"></twzipcode-zipcode></div><div class="nine columns"><pre><code class="javascript">
+import { Zipcode } from 'twzipcode-vue'
+
+...
+  components: {
+    TwzipcodeZipcode: Zipcode,
+  },
+...
+          </code>
+        </pre><pre><code class="HTML">
+&lt;twzipcode-county text-template=":zipcode :county-:city"&gt;&lt;/twzipcode-county&gt;
+
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;100&quot;&gt;100 臺北市-中正區&lt;/option&gt;
+  &lt;option value=&quot;103&quot;&gt;103 臺北市-大同區&lt;/option&gt;
+          </code>
+        </pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="以縣市分組"><a href="#以縣市分組" class="bookmark">#</a> 以縣市分組</h4><twzipcode-zipcode-groupby id="twzipcode__zipcode--2"></twzipcode-zipcode-groupby></div><div class="nine columns"><pre><code class="javascript">
+import { ZipcodeGroupby } from 'twzipcode-vue'
+
+...
+  components: {
+    TwzipcodeZipcodeGroupby: ZipcodeGroupby,
+  },
+...
+          </code>
+        </pre><pre><code class="HTML">
+&lt;twzipcode-zipcode-groupby&gt;&lt;/twzipcode-zipcode-groupby&gt;
+
+&lt;select id=&quot;twzipcode__zipcode--groupby&quot; class=&quot;twzipcode twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
+  &lt;optgroup label=&quot;臺北市&quot;&gt;
+    &lt;option value=&quot;100&quot;&gt;中正區&lt;/option&gt;
+    &lt;option value=&quot;103&quot;&gt;大同區&lt;/option&gt;
+          </code>
+        </pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="縣市"><a href="#縣市" class="bookmark">#</a> 縣市</h4><twzipcode-county id="twzipcode__county--3"></twzipcode-county></div><div class="nine columns"><pre><code class="javascript">
+import { County } from 'twzipcode-vue'
+
+...
+  components: {
+    TwzipcodeZipcodeGroupby: ZipcodeGroupby,
+  },
+...
+          </code>
+        </pre><pre><code class="HTML">
+&lt;twzipcode-county&gt;&lt;/twzipcode-county&gt;
+
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
+  &lt;option value=&quot;臺北市&quot;&gt;臺北市&lt;/option&gt;
+  &lt;option value=&quot;基隆市&quot;&gt;基隆市&lt;/option&gt;
+          </code>
+        </pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="樣式"><a href="#樣式" class="bookmark">#</a> 樣式</h4><twzipcode-county id="twzipcode__county--4" class="demo"></twzipcode-county><twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--4" class="demo"></twzipcode-zipcode-groupby><twzipcode-zipcode id="twzipcode__zipcode--4" class="demo"></twzipcode-zipcode></div><div class="nine columns"><pre><code class="css">
+.twzipcode {
+  font-weight: 700;
+}
+
+.twzipcode__county {
+  background-color: red;
+  color: white;
+}
+// 如果只有一個，可使用 #twzipcode__county 
+
+.twzipcode__zipcode--groupby {
+  background-color: yellow;
+  color: brown;
+}
+// 如果只有一個，可使用 #twzipcode__zipcode--groupby
+
+.twzipcode__zipcode {
+  background-color: lightskyblue;
+  color: dimgrey;
+}
+// 如果只有一個，可使用 #twzipcode__zipcode
+          </code>
+        </pre></div><div class="row"><div class="three columns"><h5 class="subtitle" id="value與text格式"><a href="#value與text格式" class="bookmark">#</a> value與text格式</h5><twzipcode-zipcode id="twzipcode__zipcode--5" value-template=":county:city" value="臺北市信義區" text-template=":zipcode :county:city"></twzipcode-zipcode></div><div class="nine columns"><pre><code class="HTML">
+&lt;twzipcode-zipcode value-template=&quot;:county:city&quot;
+                   value=&quot;臺北市信義區&quot;
+                   text-template=&quot;:zipcode :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
+
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;臺北市中正區&quot;&gt;100 臺北市中正區&lt;/option&gt;
+  &lt;option value=&quot;臺北市大同區&quot;&gt;103 臺北市大同區&lt;/option&gt;
+          </code>
+        </pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="英語"><a href="#英語" class="bookmark">#</a> 英語</h4><twzipcode-county id="twzipcode__county--6" value-locale="en" text-locale="en"></twzipcode-county><p><small>縣市的 value 預設為<code>:zipcode</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code>。</small></p><twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6" value-locale="en" text-locale="en"></twzipcode-zipcode-groupby><twzipcode-zipcode id="twzipcode__zipcode--6" text-locale="en" value-locale="en" text-template=":zipcode :county / :city"></twzipcode-zipcode><p><small>value 和 text 可同時使用不同的 locale 。</small></p></div><div class="nine columns"><pre><code class="HTML">
+&lt;twzipcode-county value-locale=&quot;en&quot;
+                  text-locale=&quot;en&quot;&gt;&lt;/twzipcode-county&gt;
+
+&lt;twzipcode-zipcode-groupby value-locale=&quot;en&quot;
+                           text-locale=&quot;en&quot;&gt;&lt;/twzipcode-zipcode-groupby&gt;
+
+&lt;twzipcode-zipcode value-locale=&quot;en&quot;
+                   text-locale=&quot;en&quot;
+                   text-template=&quot;:zipcode :county / :city&quot;&gt;&lt;/twzipcode-zipcode&gt;
+
+
+&lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
+  &lt;option value=&quot;臺北市&quot;&gt;Taipei City&lt;/option&gt;
+  &lt;option value=&quot;基隆市&quot;&gt;Keelung City&lt;/option&gt;
+
+&lt;select id=&quot;twzipcode__zipcode--groupby&quot; class=&quot;twzipcode twzipcode__zipcode twzipcode__zipcode--groupby&quot;&gt;
+  &lt;optgroup label=&quot;Taipei City&quot;&gt;
+    &lt;option value=&quot;100&quot;&gt;Zhongzheng District&lt;/option&gt;
+    &lt;option value=&quot;103&quot;&gt;Daton District&lt;/option&gt;
+
+&lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
+  &lt;option value=&quot;100&quot;&gt;100 Taipei City / Zhongzheng District&lt;/option&gt;
+  &lt;option value=&quot;103&quot;&gt;103 Taipei City / Daton District&lt;/option&gt;
+          </code>
+          </pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="事件"><a href="#事件" class="bookmark"># </a>事件</h4><twzipcode-zipcode id="twzipcode__zipcode--7" @input="zipcode => document.getElementById('demoCallback').textContent = zipcode"></twzipcode-zipcode><p>demoCallback：<code id="demoCallback"></code></p><p><small>若 component 的 <code>value</code> 改變，會 emit 一個 <code>input</code> 事件，並以參數方式回傳更新值。</small></p><p></p></div><div class="nine columns"><pre><code class="HTML">
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
+            @input=&quot;zipcode =&gt; document.getElementById('demoCallback').textContent = zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
+
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
+            v-model=&quot;zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
+          </code>
+          </pre></div></div><div class="row"><div class="three columns"><h4 class="subtitle" id="依縣市篩選"><a href="#依縣市篩選" class="bookmark">#</a> 依縣市篩選</h4><twzipcode-county id="twzipcode__county--8" v-model="myCounty"></twzipcode-county><twzipcode-zipcode id="twzipcode__zipcode--8" v-model="myZipcode" :filter-by-county="myCounty"></twzipcode-zipcode></div><div class="nine columns"><pre><code class="javascript">
+import { Zipcode, County } from 'twzipcode-vue'
+
+...
+  components: {
+    TwzipcodeZipcode: Zipcode,
+    TwzipcodeCounty: County
+  },
+  data () {
+    return {
+      myCounty: '臺中市',
+      myZipcode: ''
+    }
+  }
+...
+          </code>
+        </pre><pre><code class="HTML">
+&lt;twzipcode-county id=&quot;twzipcode__county&quot;
+          v-model=&quot;myCounty&quot;&gt;&lt;/twzipcode-county&gt;
+
+&lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
+           v-model=&quot;myZipcode&quot;
+           :filter-by-county=&quot;myCounty&quot;&gt;&lt;/twzipcode-zipcode&gt;
+          </code>
+        </pre></div></div></div><div class="row"><div class="twelve columns"><h4 class="subtitle subtitle--left" id="props"><a href="#props" class="bookmark">#</a> props與預設值</h4><table class="u-full-width"><thead><tr><th></th><th>counties.vue</th><th>zipcodes.vue</th><th>zipcodes.groupby.vue</th><th>說明</th></tr></thead><tbody><tr><th>value-locale</th><td><code>zh-tw</code></td><td><code>zh-tw</code></td><td><code>zh-tw</code></td><td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locale.js</a></td></tr><tr><th>value-template</th><td><code>:zipcode</code></td><td><code>:zipcode</code></td><td><code>:zipcode</code></td><td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a></td></tr><tr><th>text-locale</th><td><code>zh-tw</code></td><td><code>zh-tw</code></td><td><code>zh-tw</code></td><td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locale.js</a></td></tr><tr><th>text-template</th><td><code>:zipcode</code></td><td><code>:zipcode :county :city</code></td><td><code>:city</code></td><td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a></td></tr><tr><th>id</th><td><code>twzipcode__county</code></td><td><code>twzipcode__zipcode</code></td><td><code>twzipcode__zipcode--groupby</code></td><td></td></tr><tr><th>class</th><td><code>twzipcode</code><code>twzipcode__county</code></td><td><code>twzipcode</code><code>twzipcode__zipcode</code></td><td><code>twzipcode</code><code>twzipcode__zipcode</code><br><code>twzipcode__zipcode--groupby</code></td><td>若有指定其他 className ，則會附加在預設值後面。</td></tr><tr><th>name</th><td><code>county</code></td><td><code>zipcode</code></td><td><code>zipcode</code></td><td></td></tr><tr><th>value</th><td>第一筆資料</td><td>第一筆資料</td><td>第一筆資料</td><td>可使用<code>v-model</code>綁定<a href="#依縣市篩選">綁定</a>。<br/>若有更動 value 的<a href="#value與text格式">格式</a>，則需符合更改後格式。</td></tr><tr><th>filter-by-county</th><td>X</td><td><code>undefined</code></td><td>X</td><td>縣市的 id ，初始時要依哪個縣市篩選郵遞區號</td></tr></tbody><tfoot><tr><th colspan="5"><small>如果要設定其他 attribute ，只需要按平常方式即可，例如<code>&lt;twzipcode-county size=&quot;10&quot; required&gt;&lt;/twzipcode-county&gt;</code></small></th></tr></tfoot></table></div></div><div class="row"><div class="twelve columns">資料來源：<a href="https://github.com/yyc1217/twzipcode-data">twzipcode-data</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

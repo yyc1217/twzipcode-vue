@@ -6,7 +6,6 @@
   <title>twzipcode-vue</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/monokai.min.css">
-  <link rel="stylesheet" href="dist/demo.css">
 </head>
 
 <body class="container">
@@ -40,7 +39,7 @@ new Vue({
     <div class="row">
       <div class="three columns">
         <h4 class="subtitle" id="所有郵遞區號"><a href="#所有郵遞區號" class="bookmark">#</a> 所有郵遞區號</h4>
-        <twzipcode-zipcode id="twzipcode__zipcode--1" text-template=":id :county-:city"></twzipcode-zipcode>
+        <twzipcode-zipcode id="twzipcode__zipcode--1" text-template=":zipcode :county-:city"></twzipcode-zipcode>
       </div>
 
       <div class="nine columns">
@@ -56,7 +55,7 @@ import { Zipcode } from 'twzipcode-vue'
         </pre>
 
         <pre><code class="HTML">
-&lt;twzipcode-county text-template=":id :county-:city"&gt;&lt;/twzipcode-county&gt;
+&lt;twzipcode-county text-template=":zipcode :county-:city"&gt;&lt;/twzipcode-county&gt;
 
 &lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;100&quot;&gt;100 臺北市-中正區&lt;/option&gt;
@@ -166,13 +165,13 @@ import { County } from 'twzipcode-vue'
             <twzipcode-zipcode id="twzipcode__zipcode--5"
                                value-template=":county:city"
                                value="臺北市信義區"
-                               text-template=":id :county:city"></twzipcode-zipcode>
+                               text-template=":zipcode :county:city"></twzipcode-zipcode>
           </div>
             <div class="nine columns">
                 <pre><code class="HTML">
 &lt;twzipcode-zipcode value-template=&quot;:county:city&quot;
                    value=&quot;臺北市信義區&quot;
-                   text-template=&quot;:id :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
+                   text-template=&quot;:zipcode :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;臺北市中正區&quot;&gt;100 臺北市中正區&lt;/option&gt;
@@ -188,14 +187,14 @@ import { County } from 'twzipcode-vue'
           <twzipcode-county id="twzipcode__county--6"
                             value-locale="en"
                             text-locale="en"></twzipcode-county>
-          <p><small>縣市的 value 預設為<code>:id</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code>。</small></p>
+          <p><small>縣市的 value 預設為<code>:zipcode</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code>。</small></p>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6"
                                      value-locale="en"
                                      text-locale="en"></twzipcode-zipcode-groupby>
           <twzipcode-zipcode id="twzipcode__zipcode--6"
                              text-locale="en"
                              value-locale="en"
-                             text-template=":id :county / :city"></twzipcode-zipcode>
+                             text-template=":zipcode :county / :city"></twzipcode-zipcode>
           <p><small>value 和 text 可同時使用不同的 locale 。</small></p>
         </div>
 
@@ -209,7 +208,7 @@ import { County } from 'twzipcode-vue'
 
 &lt;twzipcode-zipcode value-locale=&quot;en&quot;
                    text-locale=&quot;en&quot;
-                   text-template=&quot;:id :county / :city&quot;&gt;&lt;/twzipcode-zipcode&gt;
+                   text-template=&quot;:zipcode :county / :city&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 
 &lt;select id=&quot;twzipcode__county&quot; class=&quot;twzipcode twzipcode__county&quot;&gt;
@@ -317,9 +316,9 @@ import { Zipcode, County } from 'twzipcode-vue'
             </tr>
             <tr>
               <th>value-template</th>
-              <td><code>:id</code></td>
-              <td><code>:id</code></td>
-              <td><code>:id</code></td>
+              <td><code>:zipcode</code></td>
+              <td><code>:zipcode</code></td>
+              <td><code>:zipcode</code></td>
               <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a>
             </tr>
             <tr>
@@ -331,8 +330,8 @@ import { Zipcode, County } from 'twzipcode-vue'
             </tr>
             <tr>
               <th>text-template</th>
-              <td><code>:id</code></td>
-              <td><code>:id :county :city</code></td>
+              <td><code>:zipcode</code></td>
+              <td><code>:zipcode :county :city</code></td>
               <td><code>:city</code></td>
               <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a>
             </tr>
@@ -388,7 +387,7 @@ import { Zipcode, County } from 'twzipcode-vue'
     </div>
   </div>
 
-  <script src="dist/demo.js"></script>
+  
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();
