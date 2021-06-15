@@ -33,7 +33,7 @@ module.exports = [
             demo: './src/demo/demo.js',
         },
         output: {
-            path: path.resolve(__dirname, '../demo'),
+            path: path.resolve(__dirname, '../docs'),
         },
         plugins: [
             new MiniCssExtractPlugin({
