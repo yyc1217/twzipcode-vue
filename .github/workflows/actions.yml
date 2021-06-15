@@ -17,6 +17,12 @@ jobs:
       - run: yarn install
       - run: yarn run test
 
+    # Send coverage report to Coveralls
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
   publish:
     needs: test
     runs-on: ubuntu-latest
