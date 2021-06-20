@@ -8185,10 +8185,10 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
-twzipcode-data@^2.0.0-alpha.2:
-  version "2.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/twzipcode-data/-/twzipcode-data-2.0.0-alpha.2.tgz#7ce5cd2643f71f1d168cc3e39dca109569f08223"
-  integrity sha512-Zx3WEUBdfeJJ5n0LCsT6FiRO0IYLIldQpECbCjSsJFD6Nb8vydwzPd+qXg/VN6abS9fx/hQ5flHf4sLUPPXcjw==
+twzipcode-data@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/twzipcode-data/-/twzipcode-data-2.0.0.tgz#497e5497baf74b9fc2ee4204dba90f299a58c964"
+  integrity sha512-S1689bl9zVUZdsfB4zt8oAy/wWZf58Yu/FtWyU4xphCslV30O1ZBlTOAqsyimlqp8jB9LpWk2GNPhL3ogm9Wzw==
   dependencies:
     accept-language "^3.0.18"
 
