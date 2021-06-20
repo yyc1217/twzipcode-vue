@@ -11,9 +11,6 @@
     "./zipcode-groupby": "src/components/zipcodes.groupby.vue",
     "./county": "src/components/counties.vue"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "test": "jest --config test/jest.config.js",
     "dev": "webpack serve --config=build/webpack.dev.js",
