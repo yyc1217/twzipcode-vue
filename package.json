@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "jest --config test/jest.config.js",
-    "dev": "webpack serve --config=build/webpack.dev.js",
-    "prod": "webpack --progress --config=build/webpack.prod.js"
+    "dev": "webpack serve --config=webpack.dev.js",
+    "prod": "webpack --progress --config=webpack.prod.js"
   },
   "repository": {
     "type": "git",
