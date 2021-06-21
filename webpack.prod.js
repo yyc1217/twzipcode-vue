@@ -11,7 +11,7 @@ module.exports = [
             twzipcode: './src/index.js'
         },
         output: {
-            path: path.resolve(__dirname, '../dist'),
+            path: path.resolve(__dirname, 'dist'),
             filename: '[name].umd.js',
             clean: true,
             library: {
@@ -33,7 +33,7 @@ module.exports = [
             demo: './src/demo/demo.js',
         },
         output: {
-            path: path.resolve(__dirname, '../docs'),
+            path: path.resolve(__dirname, 'docs'),
         },
         plugins: [
             new MiniCssExtractPlugin({
