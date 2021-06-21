@@ -1,4 +1,6 @@
 src/demo
 .nyc_output
 .github
-demo
+docs
+test
+webpack.*.js
