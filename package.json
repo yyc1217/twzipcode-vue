@@ -1,7 +1,7 @@
 {
   "name": "twzipcode-vue",
   "description": "中華郵政郵遞區號 Vue components",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
   "main": "dist/twzipcode.umd.js",
   "module": "src/index.js",
