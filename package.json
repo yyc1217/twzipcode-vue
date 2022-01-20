@@ -1,7 +1,7 @@
 {
   "name": "twzipcode-vue",
   "description": "中華郵政郵遞區號 Vue components",
-  "version": "2.1.1",
+  "version": "2.2.2",
   "author": "Yeh-Yung <yyc1217@gmail.com>",
   "main": "dist/twzipcode.umd.js",
   "module": "src/index.js",
@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "jest --config test/jest.config.js",
-    "dev": "webpack serve --config=build/webpack.dev.js",
-    "prod": "webpack --progress --config=build/webpack.prod.js"
+    "dev": "webpack serve --config=webpack.dev.js",
+    "prod": "webpack --progress --config=webpack.prod.js"
   },
   "repository": {
     "type": "git",
