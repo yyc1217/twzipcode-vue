@@ -33,7 +33,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "vue": "^2.6.14"
+    "vue": "^3.2.47"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
