@@ -1,10 +1,10 @@
 <template>
 
     <select class="twzipcode twzipcode__zipcode"
-            :value="value"
+            :value="modelValue"
             :id="id"
             :name="name"
-            @change="$emit('input', $event.target.value)">
+            @change="$emit('update:modelValue', $event.target.value)">
         <option v-for="(option, i) in filterByCountyOptions"
                 :key="'option-' + i"
                 :value="option.value">{{ option.text }}</option>
@@ -36,7 +36,7 @@ export default {
             type: String,
             default: 'zipcode'
         },
-        value: {
+        modelValue: {
             type: String,
             default: '100'
         },
@@ -45,6 +45,7 @@ export default {
             required: false
         }
     },
+    emits: ['update:modelValue'],
 
     data () {
         return {}
@@ -73,9 +74,9 @@ export default {
 
             const filteredList = this.zipcodes.filter(zipcode => zipcode.county === this.filterByCounty)
 
-            const inList = filteredList.filter(option => option.value === this.value).length > 0
+            const inList = filteredList.filter(option => option.value === this.modelValue).length > 0
             if (!inList) {
-                this.$emit('input', filteredList[0].value)
+                this.$emit('update:modelValue', filteredList[0].value)
             }
 
             return filteredList
