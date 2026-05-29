@@ -56,7 +56,7 @@ import { Zipcode } from 'twzipcode-vue'
         </pre>
 
         <pre><code class="HTML">
-&lt;twzipcode-county text-template=":zipcode :county-:city"&gt;&lt;/twzipcode-county&gt;
+&lt;twzipcode-zipcode text-template=":zipcode :county-:city"&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
   &lt;option value=&quot;100&quot;&gt;100 臺北市-中正區&lt;/option&gt;
@@ -108,7 +108,7 @@ import { County } from 'twzipcode-vue'
 
 ...
   components: {
-    TwzipcodeZipcodeGroupby: ZipcodeGroupby,
+    TwzipcodeCounty: County,
   },
 ...
           </code>
@@ -159,10 +159,11 @@ import { County } from 'twzipcode-vue'
           </code>
         </pre>
       </div>
+    </div>
 
-        <div class="row">
-          <div class="three columns">
-            <h5 class="subtitle" id="value與text格式"><a href="#value與text格式" class="bookmark">#</a> value與text格式</h5>
+      <div class="row">
+        <div class="three columns">
+          <h5 class="subtitle" id="value與text格式"><a href="#value與text格式" class="bookmark">#</a> value與text格式</h5>
             <twzipcode-zipcode id="twzipcode__zipcode--5"
                                value-template=":county:city"
                                model-value="臺北市信義區"
@@ -171,7 +172,7 @@ import { County } from 'twzipcode-vue'
             <div class="nine columns">
                 <pre><code class="HTML">
 &lt;twzipcode-zipcode value-template=&quot;:county:city&quot;
-                   value=&quot;臺北市信義區&quot;
+                   model-value=&quot;臺北市信義區&quot;
                    text-template=&quot;:zipcode :county:city&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;select id=&quot;twzipcode__zipcode&quot; class=&quot;twzipcode twzipcode__zipcode&quot;&gt;
@@ -188,7 +189,7 @@ import { County } from 'twzipcode-vue'
           <twzipcode-county id="twzipcode__county--6"
                             value-locale="en"
                             text-locale="en"></twzipcode-county>
-          <p><small>縣市的 value 預設為<code>:zipcode</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code>。</small></p>
+          <p><small>縣市的 value 預設為<code>:id</code>，縣市的id即為縣市中文名稱；若需要英文名稱可改成<code>:name</code>。</small></p>
           <twzipcode-zipcode-groupby id="twzipcode__zipcode--groupby--6"
                                      value-locale="en"
                                      text-locale="en"></twzipcode-zipcode-groupby>
@@ -231,7 +232,7 @@ import { County } from 'twzipcode-vue'
 
       <div class="row">
         <div class="three columns">
-          <h4 class="subtitle" id="事件"><a href="#事件" class="bookmark"># </a>事件</h4>
+          <h4 class="subtitle" id="事件"><a href="#事件" class="bookmark">#</a> 事件</h4>
           <twzipcode-zipcode id="twzipcode__zipcode--7"
                              @update:model-value="zipcode => demoCallbackValue = zipcode"></twzipcode-zipcode>
           <p>demoCallback：<code id="demoCallback">{{ demoCallbackValue }}</code></p>
@@ -292,7 +293,6 @@ import { Zipcode, County } from 'twzipcode-vue'
       </div>
 
       </div>
-    </div>
 
     <div class="row">
       <div class="twelve columns">
@@ -313,28 +313,28 @@ import { Zipcode, County } from 'twzipcode-vue'
               <td><code>zh-tw</code></td>
               <td><code>zh-tw</code></td>
               <td><code>zh-tw</code></td>
-              <td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locale.js</a></td>
+              <td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locales.js</a></td>
             </tr>
             <tr>
               <th>value-template</th>
+              <td><code>:id</code></td>
               <td><code>:zipcode</code></td>
               <td><code>:zipcode</code></td>
-              <td><code>:zipcode</code></td>
-              <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a>
+              <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a></td>
             </tr>
             <tr>
               <th>text-locale</th>
               <td><code>zh-tw</code></td>
               <td><code>zh-tw</code></td>
               <td><code>zh-tw</code></td>
-              <td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locale.js</a></td>
+              <td><a href="https://github.com/yyc1217/twzipcode-data/blob/master/src/locales.js">locales.js</a></td>
             </tr>
             <tr>
               <th>text-template</th>
-              <td><code>:zipcode</code></td>
+              <td><code>:name</code></td>
               <td><code>:zipcode :county :city</code></td>
               <td><code>:city</code></td>
-              <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a>
+              <td><a href="https://github.com/yyc1217/twzipcode-data#資料結構--data-structure">資料結構</a></td>
             </tr>
             <tr>
               <th>id</th>
