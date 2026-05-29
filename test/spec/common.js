@@ -1,9 +1,9 @@
 import 'should'
 import { shallowMount } from '@vue/test-utils'
 
-const getComponent = (component, propsData = {}) =>
+const getComponent = (component, props = {}) =>
   shallowMount(component, {
-    propsData
+    props
   })
 
 /**
@@ -40,12 +40,12 @@ const testInitProps = ({
 
   it(`should has first option text ${firstText}`, () => {
     const options = c.findAll('option')
-    options.at(0).text().should.eql(firstText)
+    options[0].text().should.eql(firstText)
   })
 
   it(`should has first option value ${firstValue}`, () => {
     const options = c.findAll('option')
-    options.at(0).element.value.should.eql(firstValue)
+    options[0].element.value.should.eql(firstValue)
   })
 
   it(`should has class ${classes}`, () => {
@@ -65,12 +65,12 @@ const testTemplate = ({
   valueTemplate,
   firstValue
 }) => {
-  const propsData = {
+  const props = {
     textTemplate,
     valueTemplate
   }
 
-  const c = getComponent(component, propsData)
+  const c = getComponent(component, props)
 
   it(`text should be ${firstText} rendered by ${textTemplate}`, () => {
     let option = c.element.getElementsByTagName('option')[0]
@@ -93,12 +93,12 @@ const testLocale = ({
   valueLocale = 'zh-tw',
   firstValue
 }) => {
-  const propsData = {
+  const props = {
     textLocale,
     valueLocale
   }
 
-  const c = getComponent(component, propsData)
+  const c = getComponent(component, props)
 
   it(`text should be ${firstText} in locale ${textLocale}`, () => {
     let option = c.element.getElementsByTagName('option')[0]
@@ -123,14 +123,14 @@ const testDiffLocale = ({
   valueTemplate,
   firstValue
 }) => {
-  const propsData = {
+  const props = {
     textLocale,
     valueLocale,
     textTemplate,
     valueTemplate
   }
 
-  const c = getComponent(component, propsData)
+  const c = getComponent(component, props)
 
   it(`should have value ${firstValue} and text ${firstText}`, () => {
     let option = c.element.getElementsByTagName('option')[0]
@@ -143,10 +143,10 @@ const testSelected = ({
   component,
   value
 }) => {
-  const propsData = {
-    value
+  const props = {
+    modelValue: value
   }
-  const c = getComponent(component, propsData)
+  const c = getComponent(component, props)
 
   it(`should select ${value}`, () => {
     c.element.value.should.eql(value)

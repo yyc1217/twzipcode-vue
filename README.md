@@ -24,9 +24,11 @@
 npm install twzipcode-vue --save
 ```
 
+> 本套件 v3 起支援 **Vue 3**。若仍使用 Vue 2，請安裝 v2.x。
+
 ## 用法 Usage
 ```javascript
-import Vue from 'vue'
+import { createApp } from 'vue'
 import { Zipcode, County, ZipcodeGroupby } from 'twzipcode-vue'
 
 // or
@@ -34,8 +36,7 @@ import Zipcode from 'twzipcode-vue/zipcode'
 import ZipcodeGroupby from 'twzipcode-vue/zipcode-groupby'
 import County from 'twzipcode-vue/county'
 
-new Vue({
-  el: '#app',
+createApp({
   components: {
 
     // 縣市
@@ -47,23 +48,46 @@ new Vue({
     // 依縣市分組的郵遞區號
     ZipcodeGroupby
   }
-})
+}).mount('#app')
 ```
+
+也可以用 plugin 方式全域註冊（元件名稱為 `county`、`zipcode`、`zipcode-groupby`）：
+
+```javascript
+import { createApp } from 'vue'
+import TwZipcode from 'twzipcode-vue'
+
+createApp(App).use(TwZipcode).mount('#app')
+```
+
+### ⚠️ v2 → v3 Breaking change
+
+元件的 `v-model` 已從 Vue 2 慣例（`value` prop + `input` 事件）改為 Vue 3 慣例
+（`modelValue` prop + `update:modelValue` 事件）。`v-model` 的用法不變，但若先前以
+明確的 `:value` / `@input` 綁定，請改為 `:model-value` / `@update:model-value`。
 
 ## Showcases
 [https://yyc1217.github.io/twzipcode-vue/](https://yyc1217.github.io/twzipcode-vue/)
 
 ## Build Setup
 
+本專案使用 [Vite](https://vitejs.dev/) 建置、[Vitest](https://vitest.dev/) 測試。
+
 ``` bash
 # install dependencies
-npm install
+yarn install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# serve demo with hot reload (Vite dev server)
+yarn dev
 
-# run tests
-npm run test
+# run tests (Vitest)
+yarn test
+
+# build library to dist/
+yarn build
+
+# build demo site to docs/
+yarn build:demo
 ```
 
 ## 資料來源 Data

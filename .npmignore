@@ -3,4 +3,4 @@ src/demo
 .github
 docs
 test
-webpack.*.js
+vite.*.js

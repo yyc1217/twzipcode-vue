@@ -24,14 +24,13 @@
 
       <div class="nine columns">
         <pre><code class="javascript">
-import Vue from 'vue'
+import { createApp } from 'vue'
 
-new Vue({
-  el: '#app',
+createApp({
   components: {
     // ... //
   }
-})
+}).mount('#app')
         </code></pre>
       </div>
     </div>
@@ -164,7 +163,7 @@ import { County } from 'twzipcode-vue'
             <h5 class="subtitle" id="value與text格式"><a href="#value與text格式" class="bookmark">#</a> value與text格式</h5>
             <twzipcode-zipcode id="twzipcode__zipcode--5"
                                value-template=":county:city"
-                               value="臺北市信義區"
+                               model-value="臺北市信義區"
                                text-template=":zipcode :county:city"></twzipcode-zipcode>
           </div>
             <div class="nine columns">
@@ -232,15 +231,15 @@ import { County } from 'twzipcode-vue'
         <div class="three columns">
           <h4 class="subtitle" id="事件"><a href="#事件" class="bookmark"># </a>事件</h4>
           <twzipcode-zipcode id="twzipcode__zipcode--7"
-                             @input="zipcode => document.getElementById('demoCallback').textContent = zipcode"></twzipcode-zipcode>
+                             @update:model-value="zipcode => document.getElementById('demoCallback').textContent = zipcode"></twzipcode-zipcode>
           <p>demoCallback：<code id="demoCallback"></code></p>
-          <p><small>若 component 的 <code>value</code> 改變，會 emit 一個 <code>input</code> 事件，並以參數方式回傳更新值。</small><p>
+          <p><small>若 component 的 <code>model-value</code> 改變，會 emit 一個 <code>update:model-value</code> 事件，並以參數方式回傳更新值。</small><p>
         </div>
 
         <div class="nine columns">
           <pre><code class="HTML">
 &lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
-            @input=&quot;zipcode =&gt; document.getElementById('demoCallback').textContent = zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
+            @update:model-value=&quot;zipcode =&gt; document.getElementById('demoCallback').textContent = zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
             v-model=&quot;zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
@@ -357,11 +356,11 @@ import { Zipcode, County } from 'twzipcode-vue'
               <td></td>
             </tr>
             <tr>
-              <th>value</th>
+              <th>model-value</th>
               <td>第一筆資料</td>
               <td>第一筆資料</td>
               <td>第一筆資料</td>
-              <td>可使用<code>v-model</code>綁定<a href="#依縣市篩選">綁定</a>。<br />若有更動 value 的<a href="#value與text格式">格式</a>，則需符合更改後格式。</td>
+              <td>可使用<code>v-model</code><a href="#依縣市篩選">綁定</a>。<br />若有更動 value 的<a href="#value與text格式">格式</a>，則需符合更改後格式。</td>
             </tr>
             <tr>
               <th>filter-by-county</th>
@@ -388,6 +387,7 @@ import { Zipcode, County } from 'twzipcode-vue'
   </div>
 
   
+  <script type="module" src="./demo.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
   <script>
     hljs.initHighlightingOnLoad();

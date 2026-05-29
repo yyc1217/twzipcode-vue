@@ -1,9 +1,8 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import { Zipcode, County, ZipcodeGroupby } from '../'
-import '../demo/demo.scss'
+import './demo.scss'
 
-new Vue({
-  el: '#app',
+createApp({
   components: {
     TwzipcodeZipcode: Zipcode,
     TwzipcodeZipcodeGroupby: ZipcodeGroupby,
@@ -15,4 +14,4 @@ new Vue({
       myZipcode: ''
     }
   }
-})
+}).mount('#app')
