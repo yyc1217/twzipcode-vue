@@ -231,15 +231,15 @@ import { County } from 'twzipcode-vue'
         <div class="three columns">
           <h4 class="subtitle" id="事件"><a href="#事件" class="bookmark"># </a>事件</h4>
           <twzipcode-zipcode id="twzipcode__zipcode--7"
-                             @update:model-value="zipcode => document.getElementById('demoCallback').textContent = zipcode"></twzipcode-zipcode>
-          <p>demoCallback：<code id="demoCallback"></code></p>
+                             @update:model-value="zipcode => demoCallbackValue = zipcode"></twzipcode-zipcode>
+          <p>demoCallback：<code id="demoCallback">{{ demoCallbackValue }}</code></p>
           <p><small>若 component 的 <code>model-value</code> 改變，會 emit 一個 <code>update:model-value</code> 事件，並以參數方式回傳更新值。</small><p>
         </div>
 
         <div class="nine columns">
           <pre><code class="HTML">
 &lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
-            @update:model-value=&quot;zipcode =&gt; document.getElementById('demoCallback').textContent = zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
+            @update:model-value=&quot;zipcode =&gt; demoCallbackValue = zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
 
 &lt;twzipcode-zipcode id=&quot;twzipcode__zipcode&quot;
             v-model=&quot;zipcode&quot;&gt;&lt;/twzipcode-zipcode&gt;
