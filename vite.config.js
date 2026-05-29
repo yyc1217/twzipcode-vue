@@ -28,6 +28,16 @@ export default defineConfig({
         }
       }
     },
+    commonjsOptions: {
+      // twzipcode-data loads its locale data via a computed dynamic require
+      // (`require('./' + locale + '/counties')`). Rollup cannot resolve that
+      // statically, so register the locale data files as dynamic require
+      // targets, otherwise components render no data at runtime.
+      dynamicRequireTargets: [
+        'node_modules/twzipcode-data/dist/*/counties.js',
+        'node_modules/twzipcode-data/dist/*/zipcodes.js'
+      ]
+    },
     sourcemap: true
   },
   test: {
