@@ -17,6 +17,16 @@ export default defineConfig({
   },
   build: {
     outDir: fileURLToPath(new URL('./docs', import.meta.url)),
-    emptyOutDir: true
+    emptyOutDir: true,
+    commonjsOptions: {
+      // twzipcode-data loads its locale data via a computed dynamic require
+      // (`require('./' + locale + '/counties')`). Rollup cannot resolve that
+      // statically, so register the locale data files as dynamic require
+      // targets, otherwise the demo throws "Could not dynamically require".
+      dynamicRequireTargets: [
+        'node_modules/twzipcode-data/dist/*/counties.js',
+        'node_modules/twzipcode-data/dist/*/zipcodes.js'
+      ]
+    }
   }
 })
