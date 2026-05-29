@@ -8,13 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [24.x, 25.x, 26.x]
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
+          cache: yarn
+      - run: yarn install --frozen-lockfile
       - run: yarn run test
 
     # Send coverage report to Coveralls
@@ -29,12 +30,13 @@ jobs:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 12
+          node-version: 24
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+          cache: yarn
+      - run: yarn install --frozen-lockfile
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}

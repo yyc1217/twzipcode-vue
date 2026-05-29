@@ -1,10 +1,10 @@
 <template>
 
     <select class="twzipcode twzipcode__zipcode twzipcode__zipcode--groupby"
-            :value="value"
+            :value="modelValue"
             :id="id"
             :name="name"
-            @change="$emit('input', $event.target.value)">
+            @change="$emit('update:modelValue', $event.target.value)">
 
         <optgroup v-for="(zipcodes, county) in dataList"
                   :key="'optgroup-' + county"
@@ -28,6 +28,7 @@ const DATA_NAME = 'zipcodes'
 
 export default {
     mixins: [mixin],
+    emits: ['update:modelValue'],
     props: {
         textTemplate: {
             type: String,
@@ -45,7 +46,7 @@ export default {
             type: String,
             default: 'zipcode'
         },
-        value: {
+        modelValue: {
             type: String,
             default: '100'
         },

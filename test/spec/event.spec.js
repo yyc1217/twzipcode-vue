@@ -1,7 +1,7 @@
 import 'should'
 
 import { Zipcode, County } from '../../src/'
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 
 const parentComponent = {
   template: `<div>
@@ -27,7 +27,8 @@ describe('Event', () => {
 
     const countySelectOptions = c.findComponent(County).findAll('option')
     // 澎湖縣
-    await countySelectOptions.at(16).setSelected()
+    await countySelectOptions[16].setSelected()
+    await flushPromises()
 
     const zipcodeSelect = c.findComponent(Zipcode)
     zipcodeSelect.element.value.should.eql('880')

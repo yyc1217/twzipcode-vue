@@ -1,10 +1,10 @@
 <template>
 
     <select class="twzipcode twzipcode__county"
-            :value="value"
+            :value="modelValue"
             :id="id"
             :name="name"
-            @change="$emit('input', $event.target.value)">
+            @change="$emit('update:modelValue', $event.target.value)">
         <option v-for="(county, i) in counties"
                 :key="'option-' + i"
                 :value="county.value">{{ county.text }}</option>
@@ -19,6 +19,7 @@ const DATA_NAME = 'counties'
 
 export default {
     mixins: [mixin],
+    emits: ['update:modelValue'],
     props: {
         textTemplate: {
             type: String,
@@ -36,7 +37,7 @@ export default {
             type: String,
             default: 'county'
         },
-        value: {
+        modelValue: {
             type: String,
             default: '臺北市'
         }

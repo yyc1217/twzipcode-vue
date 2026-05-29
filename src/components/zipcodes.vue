@@ -1,10 +1,10 @@
 <template>
 
     <select class="twzipcode twzipcode__zipcode"
-            :value="value"
+            :value="modelValue"
             :id="id"
             :name="name"
-            @change="$emit('input', $event.target.value)">
+            @change="$emit('update:modelValue', $event.target.value)">
         <option v-for="(option, i) in filterByCountyOptions"
                 :key="'option-' + i"
                 :value="option.value">{{ option.text }}</option>
@@ -19,6 +19,7 @@ const DATA_NAME = 'zipcodes'
 
 export default {
     mixins: [mixin],
+    emits: ['update:modelValue'],
     props: {
         textTemplate: {
             type: String,
@@ -36,7 +37,7 @@ export default {
             type: String,
             default: 'zipcode'
         },
-        value: {
+        modelValue: {
             type: String,
             default: '100'
         },
@@ -49,7 +50,7 @@ export default {
     data () {
         return {}
     },
-    
+
     computed: {
 
         zipcodes () {
@@ -71,14 +72,23 @@ export default {
                 return this.zipcodes
             }
 
-            const filteredList = this.zipcodes.filter(zipcode => zipcode.county === this.filterByCounty)
+            return this.zipcodes.filter(zipcode => zipcode.county === this.filterByCounty)
+        }
+    },
 
-            const inList = filteredList.filter(option => option.value === this.value).length > 0
-            if (!inList) {
-                this.$emit('input', filteredList[0].value)
+    watch: {
+        filterByCountyOptions: {
+            immediate: true,
+            handler (options) {
+                if (!this.filterByCounty || options.length === 0) {
+                    return
+                }
+
+                const inList = options.some(option => option.value === this.modelValue)
+                if (!inList) {
+                    this.$emit('update:modelValue', options[0].value)
+                }
             }
-
-            return filteredList
         }
     }
 }
