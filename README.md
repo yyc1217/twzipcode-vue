@@ -7,8 +7,6 @@
 [![npm](https://img.shields.io/npm/dt/twzipcode-vue.svg)](https://www.npmjs.com/package/twzipcode-vue)
 [![npm](https://img.shields.io/npm/v/twzipcode-vue.svg)](https://www.npmjs.com/package/twzipcode-vue)
 [![npm](https://img.shields.io/npm/l/twzipcode-vue.svg)]()
-[![dependencies](https://david-dm.org/yyc1217/twzipcode-vue.svg)](https://david-dm.org/yyc1217/twzipcode-vue)
-[![devDependency](https://david-dm.org/yyc1217/twzipcode-vue/dev-status.svg)](https://david-dm.org/yyc1217/twzipcode-vue#info=devDependencies)
 [![GitHub stars](https://img.shields.io/github/stars/yyc1217/twzipcode-vue.svg?style=social&label=Star)]()
 
 ## 特點 Feature

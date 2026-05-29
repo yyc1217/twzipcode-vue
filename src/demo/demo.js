@@ -11,7 +11,8 @@ createApp({
   data () {
     return {
       myCounty: '臺中市',
-      myZipcode: ''
+      myZipcode: '',
+      demoCallbackValue: ''
     }
   }
 }).mount('#app')
