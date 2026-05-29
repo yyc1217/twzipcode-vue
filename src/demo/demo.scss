@@ -25,13 +25,48 @@
 
 pre {
     margin-bottom: 0;
+    // Long example lines should scroll within the code block instead of
+    // overflowing the page (and breaking horizontal layout on mobile).
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
     & code {
         padding-left: 2em !important;
+        // Grow the block to the content width so its background covers the
+        // whole (scrollable) line, while still filling a narrow container.
+        display: inline-block;
+        min-width: 100%;
+        box-sizing: border-box;
     }
 }
 
 table td, table th {
     text-align: center;
+}
+
+// props table: keep the leftmost column (property names) fixed while the
+// component/description columns scroll horizontally on narrow screens.
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    & table {
+        min-width: 640px;
+        margin-bottom: 0;
+    }
+
+    & th:first-child,
+    & td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 1px 0 0 #e1e1e1;
+        z-index: 1;
+    }
+
+    & thead th:first-child {
+        z-index: 2;
+    }
 }
 
 .twzipcode {
