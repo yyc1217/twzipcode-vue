@@ -18,6 +18,9 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn run test
 
+    # Smoke-test the built library and demo (builds dist/ and docs/ first)
+      - run: yarn run test:smoke
+
     # Send coverage report to Coveralls
       - name: Coveralls
         uses: coverallsapp/github-action@master

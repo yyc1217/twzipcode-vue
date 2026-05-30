@@ -23,6 +23,7 @@
     "build": "vite build",
     "build:demo": "vite build --config vite.demo.config.js",
     "test": "vitest run --coverage",
+    "test:smoke": "vite build && vite build --config vite.demo.config.js && vitest run --config vitest.smoke.config.js",
     "prepublishOnly": "yarn build"
   },
   "repository": {
