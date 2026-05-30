@@ -1,5 +1,7 @@
 import twzipcode from 'twzipcode-data'
-import { keyBy, identity } from 'lodash'
+
+const identity = x => x
+const keyBy = (list, key) => Object.fromEntries(list.map(item => [item[key], item]))
 
 export default {
   props: {
