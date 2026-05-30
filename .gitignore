@@ -8,3 +8,4 @@ jsconfig.json
 .nyc_output
 test/coverage
 dist
+*.tgz
