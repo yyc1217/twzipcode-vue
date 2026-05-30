@@ -42,7 +42,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.21",
     "twzipcode-data": "^2.0.0",
     "vue": "^3.5.13"
   },

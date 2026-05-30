@@ -22,9 +22,13 @@
 
 <script>
 import mixin from './mixin'
-import { groupBy } from 'lodash'
 
 const DATA_NAME = 'zipcodes'
+
+const groupBy = (list, key) => list.reduce((groups, item) => {
+    (groups[item[key]] = groups[item[key]] || []).push(item)
+    return groups
+}, {})
 
 export default {
     mixins: [mixin],
