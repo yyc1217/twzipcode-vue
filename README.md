@@ -6,6 +6,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/yyc1217/twzipcode-vue/badge.svg?branch=master)](https://coveralls.io/github/yyc1217/twzipcode-vue?branch=master)
 [![npm](https://img.shields.io/npm/dt/twzipcode-vue.svg)](https://www.npmjs.com/package/twzipcode-vue)
 [![npm](https://img.shields.io/npm/v/twzipcode-vue.svg)](https://www.npmjs.com/package/twzipcode-vue)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/twzipcode-vue)](https://bundlephobia.com/package/twzipcode-vue)
+[![install size](https://packagephobia.com/badge?p=twzipcode-vue)](https://packagephobia.com/result?p=twzipcode-vue)
+[![Vue](https://img.shields.io/npm/dependency-version/twzipcode-vue/peer/vue)](https://vuejs.org/)
 [![npm](https://img.shields.io/npm/l/twzipcode-vue.svg)]()
 [![GitHub stars](https://img.shields.io/github/stars/yyc1217/twzipcode-vue.svg?style=social&label=Star)]()
 
