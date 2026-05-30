@@ -18,13 +18,28 @@
     "./zipcode-groupby": "src/components/zipcodes.groupby.vue",
     "./county": "src/components/counties.vue"
   },
+  "files": [
+    "dist",
+    "src/index.js",
+    "src/components"
+  ],
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "*.vue"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "vite --config vite.demo.config.js",
     "build": "vite build",
     "build:demo": "vite build --config vite.demo.config.js",
+    "lint": "eslint .",
     "test": "vitest run --coverage",
     "test:smoke": "vite build && vite build --config vite.demo.config.js && vitest run --config vitest.smoke.config.js",
-    "prepublishOnly": "yarn build"
+    "publint": "publint --pack npm",
+    "prepublishOnly": "yarn lint && yarn test && yarn test:smoke && yarn build"
   },
   "repository": {
     "type": "git",
@@ -49,10 +64,14 @@
     "twzipcode-data": "^2.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitest/coverage-v8": "^3.0.5",
     "@vue/test-utils": "^2.4.6",
+    "eslint": "^9",
+    "eslint-plugin-vue": "^9",
     "jsdom": "^26.0.0",
+    "publint": "^0.3",
     "sass": "^1.83.4",
     "should": "^13.2.3",
     "vite": "^6.0.11",
