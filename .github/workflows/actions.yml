@@ -59,6 +59,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: yarn
       - run: yarn install --frozen-lockfile
-      - run: yarn publish
+      # Use `npm publish`: it reads NODE_AUTH_TOKEN from the .npmrc that
+      # setup-node generates. `yarn publish` (classic) ignores that token and
+      # publishes unauthenticated, which npm rejects with a 404.
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
