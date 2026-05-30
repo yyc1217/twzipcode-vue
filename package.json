@@ -41,9 +41,11 @@
     "url": "https://github.com/yyc1217/twzipcode-vue/issues"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
   "dependencies": {
-    "twzipcode-data": "^2.0.0",
-    "vue": "^3.5.13"
+    "twzipcode-data": "^2.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
@@ -53,6 +55,7 @@
     "sass": "^1.83.4",
     "should": "^13.2.3",
     "vite": "^6.0.11",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "vue": "^3.5.13"
   }
 }
