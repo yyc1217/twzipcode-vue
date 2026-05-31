@@ -51,6 +51,11 @@ jobs:
     needs: [lint, test]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: read
+      # Required for npm trusted publishing (OIDC): lets the workflow mint a
+      # short-lived OIDC token so npm authenticates without a stored secret.
+      id-token: write
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -59,6 +64,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: yarn
       - run: yarn install --frozen-lockfile
+      # Trusted publishing needs npm CLI >= 11.5.1; the npm bundled with Node
+      # may be older, so upgrade before publishing.
+      - run: npm install -g npm@latest
+      # No token/secret: npm authenticates via OIDC and attaches provenance
+      # automatically. The build runs first via prepublishOnly.
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
