@@ -2097,9 +2097,9 @@ sade@^1.8.1:
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 sass@^1.83.4:
-  version "1.100.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.100.0.tgz#b4cab1bed286fe22ac6c879c514f71cd36aa06c8"
-  integrity sha512-B5j0rYMlinhhOo9tjQebMVVn0TfyXAF+wB3b2ggZUuJ/is/Y+7+JGjirAMxHZ9Z3hIP98NPfamlAkBHa1lAaXQ==
+  version "1.103.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.103.1.tgz#13b70f5ff69288db956dc27d27c8fb79f3a27c61"
+  integrity sha512-9icZURbP51S6S0QGoyaeqk9uB06GNWxsFYWfH5RgpFgqK5FA8tJcM3AdVxrZEVJ7dz+L87nG95gBKf4VuaMHGw==
   dependencies:
     chokidar "^5.0.0"
     immutable "^5.1.5"
